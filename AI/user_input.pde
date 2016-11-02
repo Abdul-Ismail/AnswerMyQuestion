@@ -15,48 +15,48 @@ void user_input()
 }
 
 int ask() {
-
     
     if (key == ENTER) {
       String str1 = new String(input);
       println(); println(cardPicked);
     }
     
-          if (insertedWordCounter == 0){
-       firstLetter = key; //checks first letter entered
-    }
+      if (insertedWordCounter == 0){
+          firstLetter = key; //checks first letter entered
+        }
     
     //if its only first letter it wont store it in the array
-     if (firstLetter == '/') { //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
-       if (insertedWordCounter < questionString.length())//display up until the end of string
-         {
+     switch (firstLetter){
+     case '/':  //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
+         if (insertedWordCounter < questionString.length())//display up until the end of string
+           {
                print(questionString.charAt(insertedWordCounter));
-         }else{print(key);} //print whats being written rather from string once end of string is reached, to avoid outofbound error
+           }else{print(key);} //print whats being written rather from string once end of string is reached, to avoid outofbound error
            
         input[insertedWordCounter] = key; //insert what the user is actually inputting 
      
-        }else if (key =='.' || firstLetter == '.')    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
-     {
-        print(questionString.charAt(insertedWordCounter)); //will print the rest of the string from where the user pressed '.'
-        firstLetter = '.';
+      break;
+      case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
+       
+          print(questionString.charAt(insertedWordCounter)); //will print the rest of the string from where the user pressed '.'
+          firstLetter = '.';
         
     
-     }else if (firstLetter ==','){
+      break;
+      case ',':
           if (insertedWordCounter == 3){
-             firstLetter = '.';
-         
+             firstLetter = '.';  
          }
               print(questionString.charAt(insertedWordCounter));
                         
-        if (insertedWordCounter != 0 && insertedWordCounter !=3){ 
-             if (insertedWordCounter == 1) {element1 = key-48; }else {element2 = key-48;  } 
-
-  
-     }else if (key == '.') {firstLetter = '.';}
-              if ( element1 != 99){
-            cardPicked = (element1*10) + element2;
-              }else cardPicked = element1;
-     }else { //if user did not click the secret key then just print out whats being entered and stored that 
+         if (insertedWordCounter != 0 && insertedWordCounter !=3 && key != '.'){ 
+             if (insertedWordCounter == 1) {element1 = key-48; }else {element2 = key-48 ; } 
+              }else if (key == '.') {firstLetter = '.';}
+              if ( element2 != 99){ //enters this statement if a secodn interger was entered
+                cardPicked = (element1*10) + element2; //adds the first integer to the second making a interger value such as 00
+              }else cardPicked = element1; //if only one integer was entered then just copy that one without any math operations
+     break;
+     default:  //if user did not click the secret key then just print out whats being entered and stored that 
        print(key);
          input[insertedWordCounter] = key;
         
