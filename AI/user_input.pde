@@ -67,7 +67,7 @@ int ask() {
  return cardPicked;
 }//endfunction
 
-
+//displays the answer 
 void display(){
    for ( int i = 0; i< 53; i++ )
 {
