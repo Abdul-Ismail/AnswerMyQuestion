@@ -3,10 +3,8 @@ class user_input{
 int insertedWordCounter = 0; //keeps track of element user is inputing
   char firstLetter = ' ';
   String questionString = "Abdul please answer this question";   
-  String userInput; //array for input by the user
+  String userInput = ""; //array for input by the user
   int checker;
-  int element1, element2 = 99;
-  int cardPicked;
   PImage[] cards = new PImage[53];
 
 void user_input()
@@ -14,11 +12,10 @@ void user_input()
     
 }
 
-int ask() {
+void ask() {
     
     if (key == ENTER) {
-      println(); 
-      println(userInput);
+      return;
     }
     
       if (insertedWordCounter == 0){
@@ -32,36 +29,33 @@ int ask() {
            {
                print(questionString.charAt(insertedWordCounter));
            }else{print(key);} //print whats being written rather from string once end of string is reached, to avoid outofbound error
-           
-         userInput += key; //insert what the user is actually inputting 
+             
+          if (key == '.'){ firstLetter = '.'; 
+             break;
+           }       userInput += key; //insert what the user is actually inputting 
      
       break;
       case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
        
           print(questionString.charAt(insertedWordCounter)); //will print the rest of the string from where the user pressed '.'
           firstLetter = '.';
-          println("we in");
         
-    
       break;
       case ',':
         print(questionString.charAt(insertedWordCounter));
-          if (key == '.'){
-             firstLetter = '.'; 
+          if (key == '.'){ firstLetter = '.'; 
              break;
-         }
-            userInput += key;
+           }
+            if (insertedWordCounter !=0)userInput += key;
                         
      break;
      default:  //if user did not click the secret key then just print out whats being entered and stored that 
        print(key);
-         userInput += key;
-        
+         userInput += key;       
      }
   
    
       insertedWordCounter+=1; 
- return cardPicked;
 }//endfunction
 
 //displays the answer
@@ -70,7 +64,11 @@ void display(){
 {
   cards[i] = loadImage( i + ".png" );   
 }
-  image(cards[cardPicked], 25,25, cards[1].width/2, cards[1].height/2);
+  HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
+  cardToNum.put("sevenh", 28);
+  if (cardToNum.containsKey(userInput)){
+  image(cards[cardToNum.get(userInput)], 25,25, cards[1].width/2, cards[1].height/2);
+  }else println(userInput);
 }
 
 }//end class

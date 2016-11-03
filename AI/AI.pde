@@ -1,5 +1,4 @@
 user_input input;
-int cardStored;
 
 
 void setup() {
@@ -17,5 +16,5 @@ void draw(){
 
 void keyPressed()
  {
-  cardStored = input.ask();
+   input.ask();
  }
