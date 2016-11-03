@@ -1,21 +1,24 @@
 class user_input{
   
 int insertedWordCounter = 0; //keeps track of element user is inputing
-  char firstLetter = ' ';
-  String questionString = "Abdul please answer this question";   
-  String userInput = ""; //array for input by the user
-  int checker;
-  PImage[] cards = new PImage[53];
+char firstLetter = ' ';
+String questionString = "Abdul please answer this question";   
+String userInput = ""; //array for input by the user 
+PImage[] cards = new PImage[53];
+int nextCall;
 
 void user_input()
 {
     
 }
 
-void ask() {
-    
+int ask() {
+  nextCall = 1;
+    println("testing");
     if (key == ENTER) {
-      return;
+      nextCall = 0;
+      println("done");
+      return nextCall;
     }
     
       if (insertedWordCounter == 0){
@@ -32,7 +35,8 @@ void ask() {
              
           if (key == '.'){ firstLetter = '.'; 
              break;
-           }       userInput += key; //insert what the user is actually inputting 
+           }
+           if (insertedWordCounter !=0)userInput += key; //insert what the user is actually inputting 
      
       break;
       case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
@@ -42,13 +46,7 @@ void ask() {
         
       break;
       case ',':
-        print(questionString.charAt(insertedWordCounter));
-          if (key == '.'){ firstLetter = '.'; 
-             break;
-           }
-            if (insertedWordCounter !=0)userInput += key;
-                        
-     break;
+
      default:  //if user did not click the secret key then just print out whats being entered and stored that 
        print(key);
          userInput += key;       
@@ -56,6 +54,7 @@ void ask() {
   
    
       insertedWordCounter+=1; 
+  return nextCall;
 }//endfunction
 
 //displays the answer
@@ -64,11 +63,16 @@ void display(){
 {
   cards[i] = loadImage( i + ".png" );   
 }
+
   HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
   cardToNum.put("sevenh", 28);
   if (cardToNum.containsKey(userInput)){
   image(cards[cardToNum.get(userInput)], 25,25, cards[1].width/2, cards[1].height/2);
   }else println(userInput);
+}
+
+void question(){
+      print(key);
 }
 
 }//end class
