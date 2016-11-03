@@ -6,6 +6,7 @@ String questionString = "Abdul please answer this question";
 String userInput = ""; //array for input by the user 
 PImage[] cards = new PImage[53];
 int nextCall;
+int callOnce = 0; // get voice called once
 
 void user_input()
 {
@@ -14,17 +15,17 @@ void user_input()
 
 int ask() {
   nextCall = 1;
-    println("testing");
     if (key == ENTER) {
-      nextCall = 0;
+      nextCall = 2;
       println("done");
+      println();
       return nextCall;
     }
     
       if (insertedWordCounter == 0){
           firstLetter = key; //checks first letter entered
         }
-    
+
     //if its only first letter it wont store it in the array
      switch (firstLetter){
      case '/':  //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
@@ -51,14 +52,14 @@ int ask() {
        print(key);
          userInput += key;       
      }
+     
+        insertedWordCounter+=1; 
   
-   
-      insertedWordCounter+=1; 
   return nextCall;
 }//endfunction
 
 //displays the answer
-void display(){
+void answer(){
    for ( int i = 0; i< 53; i++ )
 {
   cards[i] = loadImage( i + ".png" );   
@@ -72,6 +73,7 @@ void display(){
 }
 
 void question(){
+  if (callOnce == 0)  {println("what is your question ?"); callOnce++;} //need this to be displayed only once
       print(key);
 }
 

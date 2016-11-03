@@ -1,5 +1,5 @@
 user_input input;
-int value = 1;
+int value = 0;
 
 
 void setup() {
@@ -8,18 +8,25 @@ void setup() {
 }
 
 void draw(){
-  if (value == 1)
-   {
-     value = input.ask();
-   } 
-     
-  //if (key == ENTER){
-      //input.display();
-     // key = 'a';
-  // }
+
 }
 
 void keyPressed()
  {
+     if (value == 1)
+   {
+     value = input.ask();
+   } 
+     
+     if (value == 2)
+      {
+        input.question();
+      }
+ }
  
+ void mousePressed() {
+   if (mouseX < width/2)
+   {
+     value =1;
+   }
  }
