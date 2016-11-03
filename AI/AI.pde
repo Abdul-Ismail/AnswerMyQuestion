@@ -20,8 +20,13 @@ void keyPressed()
      
      if (value == 2)
       {
-        input.question();
+        value = input.question();
       }
+      
+      if (value ==3)
+       {
+         input.answer();
+       }
  }
  
  void mousePressed() {

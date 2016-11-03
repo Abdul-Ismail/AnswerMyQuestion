@@ -19,6 +19,7 @@ int ask() {
       nextCall = 2;
       println("done");
       println();
+      key = 'a';//to remove key from having enter stored
       return nextCall;
     }
     
@@ -67,14 +68,26 @@ void answer(){
 
   HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
   cardToNum.put("sevenh", 28);
+  speech("Is this your card ?");
   if (cardToNum.containsKey(userInput)){
   image(cards[cardToNum.get(userInput)], 25,25, cards[1].width/2, cards[1].height/2);
-  }else println(userInput);
+  }else speech(userInput);
 }
 
-void question(){
-  if (callOnce == 0)  {println("what is your question ?"); callOnce++;} //need this to be displayed only once
+int question(){
+  if (callOnce == 0)  {speech("what is your question ?"); callOnce++;} //need this to be displayed only once
       print(key);
+      if (key == ENTER){nextCall = 3 ;}
+      return nextCall;
+}
+
+void speech(String text) {
+  try{
+    Runtime.getRuntime().exec(new String[] {"say", "-v", "Victoria", "[[rate " + Integer.toString(200) + "]]" + text});
+  }
+  catch (IOException e) {
+     //do nothing
+  } 
 }
 
 }//end class
