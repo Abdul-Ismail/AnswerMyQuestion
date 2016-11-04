@@ -4,7 +4,7 @@ int insertedWordCounter = 0; //keeps track of element user is inputing
 char firstLetter = ' ';
 String questionString = "Abdul please answer this question";   
 String userInput = ""; //array for input by the user 
-PImage[] cards = new PImage[53];
+PImage[] cards = new PImage[52];
 int nextCall;
 int callOnce = 0; // get voice called once
 
@@ -66,7 +66,7 @@ int ask() {
 
 //displays the answer
 void answer(){
-   for ( int i = 0; i< 53; i++ )
+   for ( int i = 0; i< 52; i++ )
 {
   cards[i] = loadImage( i + ".png" );   
 }
@@ -89,6 +89,7 @@ void answer(){
   }
   }
   if (cardToNum.containsKey(userInput)){
+
   image(cards[cardToNum.get(userInput)], 25,25, cards[1].width/2, cards[1].height/2);
   }else speech(userInput);
 }
