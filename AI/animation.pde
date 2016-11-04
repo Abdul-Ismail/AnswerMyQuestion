@@ -1,8 +1,9 @@
 class animation{
+  user_input input2;
   int nextCall;
   
   animation(){
-    
+    input2 = new user_input();
   }
   
   float[] circleSpin() {
@@ -34,6 +35,7 @@ int overCircle(float circleCenterX,float circleCenterY, float x, float y, int di
   float disX = circleCenterX - x;
   float disY = circleCenterY - y;
   if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+    input2.speech("what can i do for you ?");
  nextCall = 1;
   }
   return nextCall;
