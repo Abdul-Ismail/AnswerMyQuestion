@@ -1,14 +1,18 @@
 user_input input;
+animation ui;
 int value = 0;
+float[] angle = new float[2]; //used to store angle 
+ 
 
 
 void setup() {
- size(500, 500); 
+ size(1280,640);
  input = new user_input();
+ ui = new animation();
 }
 
 void draw(){
-
+  angle = ui.circleSpin();
 }
 
 void keyPressed()
