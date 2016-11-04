@@ -15,7 +15,28 @@ int stopLoop = 0;
 
 void user_input()
 {
-    
+       for ( int i = 0; i< 52; i++ )
+{
+  cards[i] = loadImage( i + ".png" );   
+}
+
+  reader = createReader("cards.tab");    //opens the file
+  while(stopLoop == 0)
+  {
+   try {
+    line = reader.readLine();
+  } catch (IOException e) {
+    e.printStackTrace();
+    line = null;
+  }
+  if (line == null) {
+    // Stop reading because of an error or file is empty
+   stopLoop = 1;
+  } else {
+    String[] pieces = split(line, TAB);
+      cardToNum.put(pieces[0], parseInt(pieces[1]));
+  }
+  }
 }
 
 int ask() {
@@ -66,28 +87,7 @@ int ask() {
 
 //displays the answer
 void answer(){
-   for ( int i = 0; i< 52; i++ )
-{
-  cards[i] = loadImage( i + ".png" );   
-}
 
-  reader = createReader("cards.tab");    //opens the file
-  while(stopLoop == 0)
-  {
-   try {
-    line = reader.readLine();
-  } catch (IOException e) {
-    e.printStackTrace();
-    line = null;
-  }
-  if (line == null) {
-    // Stop reading because of an error or file is empty
-   stopLoop = 1;
-  } else {
-    String[] pieces = split(line, TAB);
-      cardToNum.put(pieces[0], parseInt(pieces[1]));
-  }
-  }
   if (cardToNum.containsKey(userInput)){
 
   image(cards[cardToNum.get(userInput)], 25,25, cards[1].width/2, cards[1].height/2);
