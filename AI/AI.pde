@@ -33,9 +33,6 @@ void keyPressed()
        }
  }
  
- void mousePressed() {
-   if (mouseX < width/2)
-   {
-     value =1;
-   }
- }
+void mousePressed() {
+  value = ui.overCircle(mouseX, mouseY, width/2, height/2, 100);
+}

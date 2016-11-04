@@ -1,5 +1,5 @@
 class animation{
-  
+  int nextCall;
   
   animation(){
     
@@ -28,5 +28,14 @@ class animation{
    ellipse(width/2, height/2, 135, 135);
   
    return angle;
+}
+
+int overCircle(float circleCenterX,float circleCenterY, float x, float y, int diameter) {
+  float disX = circleCenterX - x;
+  float disY = circleCenterY - y;
+  if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
+ nextCall = 1;
+  }
+  return nextCall;
 }
 }
