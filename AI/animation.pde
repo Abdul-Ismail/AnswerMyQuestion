@@ -2,9 +2,13 @@ class animation {
   user_input input2;
   int nextCall;
   PShape button;
+  PGraphics load;
+ float loadingAngle = 270;
+
 
   animation() {
     input2 = new user_input();
+      load = createGraphics(width+50, height+160);
     button = createShape(ELLIPSE, width/2, height/2, 130, 130); // main circle in screen, will be accessed by other functions
   }
 
@@ -48,8 +52,8 @@ class animation {
     }
     return nextCall;
   }
-  
-  void hoverCircle(float circleCenterX, float circleCenterY, float x, float y, int diameter){
+
+  void hoverCircle(float circleCenterX, float circleCenterY, float x, float y, int diameter) {
     boolean hover = false;
     hover = overCircle(circleCenterX, circleCenterY, x, y, diameter);
     if (hover == true)
@@ -57,7 +61,7 @@ class animation {
       button.setFill(color(255, 25, 25));
     }
   }
-  
+
 
   //this function will measure to see if mouse is within circle, it will be called by functions in this class
   boolean overCircle(float circleCenterX, float circleCenterY, float x, float y, int diameter) {
@@ -68,4 +72,41 @@ class animation {
       return onCircle = true;
     } else return onCircle = false;
   }
+
+  void loading()
+  {
+
+    float speed = 0.5 ;
+    float newx, newy;
+    float x =width/2-120;
+    float y =height/2-60;
+
+    load.beginDraw();
+    load.noStroke();
+    load.fill(255, 0, 0);
+    load.strokeWeight(10);
+
+    newx = x + cos(radians(loadingAngle))*70;
+    newy = y +sin(radians(loadingAngle))*70;
+    if (loadingAngle < 30 || loadingAngle > 270)
+    {
+      load.stroke(242, 13, 59);
+    } else if (loadingAngle < 150)
+    {
+      load.stroke(242, 227, 13);
+    } else {
+      load.stroke(13, 242, 59);
+    }
+    load.line(newx, newy, newx, newy);
+    loadingAngle += speed;
+
+    if (loadingAngle >360) {
+      loadingAngle = 0;
+    }
+
+    load.endDraw();
+
+    // Draw the offscreen buffer to the screen with image() 
+    image(load, 120, 60);
   }
+}
