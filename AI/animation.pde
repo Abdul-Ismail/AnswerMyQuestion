@@ -1,9 +1,11 @@
 class animation{
   user_input input2;
   int nextCall;
+    PShape button;
   
   animation(){
     input2 = new user_input();
+      button = createShape(ELLIPSE,width/2, height/2, 130, 130); // main circle in screen, will be accessed by other functions
   }
   
   float[] circleSpin() {
@@ -24,7 +26,8 @@ class animation{
    }
     
    noFill();
-   ellipse(width/2, height/2, 130, 130);
+   shape(button);
+   button.setFill(color(255,50));
    ellipse(width/2, height/2, 135, 135);
   
    return angle;
@@ -35,6 +38,7 @@ int circleClicked(float circleCenterX,float circleCenterY, float x, float y, int
   clicked = overCircle(circleCenterX, circleCenterY, x, y, diameter);
   if(clicked == true)
    {
+       button.setFill(color(255,25,25));
      input2.speech("how may i be of assistance");
      nextCall = 1;
    }
