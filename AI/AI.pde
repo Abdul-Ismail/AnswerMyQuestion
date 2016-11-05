@@ -17,7 +17,14 @@ void draw() {
   background(19, 32, 33);
   angle = ui.circleSpin();
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
-  ui.loading();
+  if (value == 4){
+    value = ui.loading();
+  }
+  
+   if (value == 3)
+  {
+    value = input.answer();
+  }
 }
 
 void keyPressed()
@@ -31,11 +38,8 @@ void keyPressed()
   {
     value = input.question();
   }
+  
 
-  if (value ==3)
-  {
-    input.answer();
-  }
 }
 
 void mousePressed() {

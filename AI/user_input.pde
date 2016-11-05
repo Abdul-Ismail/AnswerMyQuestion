@@ -90,12 +90,13 @@ class user_input {
   }//endfunction
 
   //displays the answer
-  void answer() {
-
+  int answer() {
     if (cardToNum.containsKey(userInput)) {
 
       image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
     } else speech(userInput);
+    insertedWordCounter = 0;
+    return nextCall = 0;
   }
 
   int question() {
@@ -105,7 +106,7 @@ class user_input {
     } //need this to be displayed only once
     print(key);
     if (key == ENTER) {
-      nextCall = 3 ;
+      nextCall = 4 ;
     }
     return nextCall;
   }

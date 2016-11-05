@@ -73,10 +73,10 @@ class animation {
     } else return onCircle = false;
   }
 
-  void loading()
+  int loading()
   {
-
-    float speed = 0.5 ;
+     nextCall = 4;
+    float speed = 3 ;
     float newx, newy;
     float x =width/2-120;
     float y =height/2-60;
@@ -88,7 +88,7 @@ class animation {
 
     newx = x + cos(radians(loadingAngle))*70;
     newy = y +sin(radians(loadingAngle))*70;
-    if (loadingAngle < 30 || loadingAngle > 270)
+    if (loadingAngle < 30 || loadingAngle > 260)
     {
       load.stroke(242, 13, 59);
     } else if (loadingAngle < 150)
@@ -103,10 +103,18 @@ class animation {
     if (loadingAngle >360) {
       loadingAngle = 0;
     }
+    
+     if(loadingAngle >265 && loadingAngle < 270)
+     {
+       nextCall = 3; //once loading has reached full circle it will display answer by calling the function due ot nextCall being change
+      // input2.speech("we hacked through the mainframe motherfucker");
+     }
 
     load.endDraw();
 
     // Draw the offscreen buffer to the screen with image() 
     image(load, 120, 60);
+    
+    return nextCall;
   }
 }
