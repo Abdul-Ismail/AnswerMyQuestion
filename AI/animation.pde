@@ -7,14 +7,13 @@ class animation{
   }
   
   float[] circleSpin() {
-  background(0);
   int x = width/2;
   int y = height/2;
   float newx, newy;
   int radius =50;
   float speed = 2;
   noFill();
-  stroke(200);
+  stroke(69, 298,208);
 
   for(int i = 0; i<2; i++)
 {
@@ -30,14 +29,25 @@ class animation{
   
    return angle;
 }
+ 
+int circleClicked(float circleCenterX,float circleCenterY, float x, float y, int diameter){
+  boolean clicked = false;
+  clicked = overCircle(circleCenterX, circleCenterY, x, y, diameter);
+  if(clicked == true)
+   {
+     input2.speech("how may i be of assistance");
+     nextCall = 1;
+   }
+  return nextCall;
+}
 
-int overCircle(float circleCenterX,float circleCenterY, float x, float y, int diameter) {
+//this function will measure to see if mouse is within circle, it will be called by functions in this class
+boolean overCircle(float circleCenterX,float circleCenterY, float x, float y, int diameter) {
+  boolean onCircle;
   float disX = circleCenterX - x;
   float disY = circleCenterY - y;
   if (sqrt(sq(disX) + sq(disY)) < diameter/2 ) {
-    input2.speech("what can i do for you ?");
- nextCall = 1;
-  }
-  return nextCall;
+  return onCircle = true;
+  }else return onCircle = false;
 }
 }

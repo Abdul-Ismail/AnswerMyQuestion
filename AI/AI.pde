@@ -12,6 +12,7 @@ void setup() {
 }
 
 void draw(){
+  background(19,32, 33);
   angle = ui.circleSpin();
 }
 
@@ -34,5 +35,5 @@ void keyPressed()
  }
  
 void mousePressed() {
-  value = ui.overCircle(mouseX, mouseY, width/2, height/2, 100);
+  value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 100);
 }
