@@ -44,9 +44,8 @@ class user_input {
     nextCall = 1;
     if (key == ENTER) {
       nextCall = 2;
-      println("done");
       println();
-      key = 'a';//to remove key from having enter stored
+      key = ' ';//to remove key from having enter stored
       return nextCall;
     }
 
@@ -88,6 +87,19 @@ class user_input {
 
     return nextCall;
   }//endfunction
+  
+    int question() {
+    if (callOnce == 0) {
+      speech("what is your question ?"); 
+      callOnce++;
+    } //need this to be displayed only once
+    print(key);
+    if (key == ENTER) {
+      nextCall = 4 ;
+      callOnce = 0; //to enter that loop again if another question is asked
+    }
+    return nextCall;
+  }
 
   //displays the answer
   int answer() {
@@ -96,20 +108,10 @@ class user_input {
       image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
     } else speech(userInput);
     insertedWordCounter = 0;
+    userInput = "";
     return nextCall = 0;
   }
 
-  int question() {
-    if (callOnce == 0) {
-      speech("what is your question ?"); 
-      callOnce++;
-    } //need this to be displayed only once
-    print(key);
-    if (key == ENTER) {
-      nextCall = 4 ;
-    }
-    return nextCall;
-  }
 
   void speech(String text) {
     try {

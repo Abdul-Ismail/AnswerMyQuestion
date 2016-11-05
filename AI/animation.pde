@@ -3,12 +3,12 @@ class animation {
   int nextCall;
   PShape button;
   PGraphics load;
- float loadingAngle = 270;
+  float loadingAngle = 270;
 
 
   animation() {
     input2 = new user_input();
-      load = createGraphics(width+50, height+160);
+    load = createGraphics(width+50, height+160);
     button = createShape(ELLIPSE, width/2, height/2, 130, 130); // main circle in screen, will be accessed by other functions
   }
 
@@ -75,7 +75,7 @@ class animation {
 
   int loading()
   {
-     nextCall = 4;
+    nextCall = 4;
     float speed = 3 ;
     float newx, newy;
     float x =width/2-120;
@@ -103,18 +103,18 @@ class animation {
     if (loadingAngle >360) {
       loadingAngle = 0;
     }
-    
-     if(loadingAngle >265 && loadingAngle < 270)
-     {
-       nextCall = 3; //once loading has reached full circle it will display answer by calling the function due ot nextCall being change
-      // input2.speech("we hacked through the mainframe motherfucker");
-     }
+
+    if (loadingAngle >265 && loadingAngle < 270)
+    {
+      nextCall = 3; //once loading has reached full circle it will display answer by calling the function due ot nextCall being change
+      load.clear(); // to clear previous loading bar in order to load again
+    }
 
     load.endDraw();
 
     // Draw the offscreen buffer to the screen with image() 
     image(load, 120, 60);
-    
+
     return nextCall;
   }
 }
