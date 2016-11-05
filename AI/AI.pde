@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
-  background(19, 32, 33);
+ 
   angle = ui.circleSpin();
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
   if (value == 4) {
