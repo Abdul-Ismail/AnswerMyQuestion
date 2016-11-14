@@ -13,10 +13,32 @@ class user_input {
   int stopLoop = 0;
   HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
 
-  void user_input()
+  user_input()
   {
         
-    
+      for ( int i = 0; i< 52; i++ )
+    {
+      cards[i] = loadImage( i + ".png" );
+    }
+
+    reader = createReader("cards.tab");    //opens the file
+    while (stopLoop == 0)
+    {
+      try {
+        line = reader.readLine();
+      } 
+      catch (IOException e) {
+        e.printStackTrace();
+        line = null;
+      }
+      if (line == null) {
+        // Stop reading because of an error or file is empty
+        stopLoop = 1;
+      } else {
+        String[] pieces = split(line, TAB);
+        cardToNum.put(pieces[0], parseInt(pieces[1]));
+      }
+    }
   }
 
   int ask() {
@@ -82,8 +104,7 @@ class user_input {
 
   //displays the answer
   int answer() {
- 
-      displayCard();
+
     if (cardToNum.containsKey(userInput)) {
 
       image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
@@ -103,29 +124,5 @@ class user_input {
     }
   }
   
-  void displayCard(){
-    for ( int i = 0; i< 52; i++ )
-    {
-      cards[i] = loadImage( i + ".png" );
-    }
-
-    reader = createReader("cards.tab");    //opens the file
-    while (stopLoop == 0)
-    {
-      try {
-        line = reader.readLine();
-      } 
-      catch (IOException e) {
-        e.printStackTrace();
-        line = null;
-      }
-      if (line == null) {
-        // Stop reading because of an error or file is empty
-        stopLoop = 1;
-      } else {
-        String[] pieces = split(line, TAB);
-        cardToNum.put(pieces[0], parseInt(pieces[1]));
-      }
-    }
-  }
+  
 }//end class
