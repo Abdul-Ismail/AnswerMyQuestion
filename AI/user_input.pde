@@ -12,6 +12,10 @@ class user_input {
   String line;
   int stopLoop = 0;
   HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
+  
+  PImage backOfCard; //back of the card 
+  float rotationPoint = 0.0; //start of rotation
+  PGraphics flip; //used for rotatingCard function
 
   user_input()
   {
@@ -39,6 +43,10 @@ class user_input {
         cardToNum.put(pieces[0], parseInt(pieces[1]));
       }
     }
+    
+    
+  flip = createGraphics(1040, 520, P3D);
+  backOfCard = loadImage("back.png" ); //to dispaly the back of the card 
   }
 
   int ask() {
@@ -123,6 +131,31 @@ class user_input {
       //do nothing
     }
   }
+  
+  
+  void rotateCard(PImage cardChosen){
+   /*reason for using phrapihcs is that we need the background to constanlty refresh 
+   but putting it in draw refreshed background and gets rid of the card*/
+   flip.beginDraw();
+    flip.background(125);
+    flip.translate(200, 50);  
+    flip.rotateY(rotationPoint);
+
+ if (rotationPoint < 2.2099984)
+ {
+     flip.image(backOfCard, 20,20, 100, 145.2);
+ }else   flip.image(cardChosen, 20,20, 100, 145.2);
+ 
+ if (rotationPoint <= 3.1699975){
+     rotationPoint += 0.01;
+ }
+  
+  flip.translate(200, 50);  
+  flip.rotateY(rotationPoint * 2.0);
+  flip.endDraw();
+  image(flip, 0, 0); 
+  
+}
   
   
 }//end class

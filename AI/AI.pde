@@ -4,7 +4,7 @@ int value = 0;
 float[] angle = new float[2]; //used to store angle 
 
 void setup() {
-  size(1040, 520);
+  size(1040, 520, P3D);
   input = new user_input();
   ui = new animation();
 }
