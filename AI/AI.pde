@@ -10,7 +10,7 @@ void setup() {
 }
 
 void draw() {
- 
+  background(0);
   angle = ui.circleSpin();
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
   if (value == 4) {
@@ -20,6 +20,11 @@ void draw() {
   if (value == 3)
   {
     value = input.answer();
+  }
+  
+    if (value == 5)
+  {
+    input.rotateCard();
   }
 }
 

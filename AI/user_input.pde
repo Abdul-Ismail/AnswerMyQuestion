@@ -16,6 +16,7 @@ class user_input {
   PImage backOfCard; //back of the card 
   float rotationPoint = 0.0; //start of rotation
   PGraphics flip; //used for rotatingCard function
+  int cardPicked;
 
   user_input()
   {
@@ -114,8 +115,9 @@ class user_input {
   int answer() {
 
     if (cardToNum.containsKey(userInput)) {
-
-      image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
+      cardPicked = cardToNum.get(userInput);
+      return nextCall = 5;
+      //image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
     } else speech(userInput);
     insertedWordCounter = 0;
     userInput = "";
@@ -133,18 +135,18 @@ class user_input {
   }
   
   
-  void rotateCard(PImage cardChosen){
+  void rotateCard(){
    /*reason for using phrapihcs is that we need the background to constanlty refresh 
    but putting it in draw refreshed background and gets rid of the card*/
    flip.beginDraw();
-    flip.background(125);
+    flip.background(0);
     flip.translate(200, 50);  
     flip.rotateY(rotationPoint);
 
  if (rotationPoint < 2.2099984)
  {
      flip.image(backOfCard, 20,20, 100, 145.2);
- }else   flip.image(cardChosen, 20,20, 100, 145.2);
+ }else   flip.image(cards[cardPicked], 20,20, 100, 145.2);
  
  if (rotationPoint <= 3.1699975){
      rotationPoint += 0.01;
