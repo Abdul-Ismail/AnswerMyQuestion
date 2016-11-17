@@ -4,6 +4,7 @@ class animation {
   PShape button;
   PGraphics load;
   float loadingAngle = 270;
+  int size = 250;
 
 
   animation() {
@@ -34,11 +35,39 @@ class animation {
     }
 
     noFill();
-    shape(button);
-    button.setFill(color(255, 50));
-    ellipse(width/2, height/2, 135, 135);
+    //shape(button);
+    //button.setFill(color(255, 50));
+    //ellipse(width/2, height/2, 135, 135);
+
+    lights();
+
+
+    fill(255, 0, 0);
+    pushMatrix();
+    translate(width/2, height/2);
+    rotateX(radians(frameCount*3));
+    rotateY(radians(frameCount*3));
+    sphereDetail(100);
+    sphere(80);
+    popMatrix();
 
     return angle;
+  }
+
+  int loadingScreen() {
+      fill(255, 0, 0);
+       stroke(69, 298, 208);
+    pushMatrix();
+    translate(width/2, height/2);
+    rotateX(radians(frameCount*1));
+    rotateY(radians(frameCount*1));
+    sphereDetail(100);
+    sphere(size);
+    if (size != 80){size-=1;} else{
+      return 0;
+    }
+    popMatrix();
+    return 10;
   }
 
   int circleClicked(float circleCenterX, float circleCenterY, float x, float y, int diameter) {

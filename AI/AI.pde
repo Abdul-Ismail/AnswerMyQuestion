@@ -1,6 +1,6 @@
 user_input input;
 animation ui;
-int value = 0;
+int value = 10;
 float[] angle = new float[2]; //used to store angle 
 
 void setup() {
@@ -11,8 +11,14 @@ void setup() {
 
 void draw() {
   background(0);
-  angle = ui.circleSpin();
+ 
+  
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
+  
+  if (value == 10) {
+    value = ui.loadingScreen();
+  }else  angle = ui.circleSpin();
+  
   if (value == 4) {
     value = ui.loading();
   }
@@ -42,5 +48,7 @@ void keyPressed()
 }
 
 void mousePressed() {
-  value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 100);
+  if (value != 10){
+  value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 160);
+  }
 }
