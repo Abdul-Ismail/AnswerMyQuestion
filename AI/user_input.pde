@@ -88,9 +88,8 @@ class user_input {
       break;
     case ',':
 
-    default:  //if user did not click the secret key then just print out whats being entered and stored that 
+    default:  //if user did not click the secret key then just print out whats being entered and store that 
       print(key);
-      userInput += key;
     }
 
     insertedWordCounter+=1; 
@@ -116,9 +115,15 @@ class user_input {
 
     if (cardToNum.containsKey(userInput)) {
       cardPicked = cardToNum.get(userInput);
+      insertedWordCounter = 0;
+      userInput = "";
       return nextCall = 5;
-      //image(cards[cardToNum.get(userInput)], 25, 25, cards[1].width/2, cards[1].height/2);
-    } else speech(userInput);
+    } else if(userInput != ""){ 
+      speech(userInput); //if userinput is not null then it will text to speech the answer
+    }else{
+      speech("I only answer to abdul sorry"); //will display this if the user does not enter the answer before hand, e.g if input is empty
+      return nextCall = 0;
+    } 
     insertedWordCounter = 0;
     userInput = "";
     return nextCall = 0;

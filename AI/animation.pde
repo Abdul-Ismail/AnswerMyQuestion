@@ -43,6 +43,7 @@ class animation {
 
   int circleClicked(float circleCenterX, float circleCenterY, float x, float y, int diameter) {
     boolean clicked = false;
+    nextCall = 0; // if not the right area is clicked then return 0
     clicked = overCircle(circleCenterX, circleCenterY, x, y, diameter);
     if (clicked == true)
     {
