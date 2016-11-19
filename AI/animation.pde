@@ -5,12 +5,14 @@ class animation {
   PGraphics load;
   float loadingAngle = 270;
   int size = 250;
+  boolean hover;
+  int loadingScreenSpeech = 0;
 
 
   animation() {
     input2 = new user_input();
     load = createGraphics(width+50, height+160);
-    button = createShape(ELLIPSE, width/2, height/2, 130, 130); // main circle in screen, will be accessed by other functions
+    button = createShape(SPHERE, 80); // main circle in screen, will be accessed by other functions
   }
 
   float[] circleSpin() {
@@ -24,8 +26,8 @@ class animation {
 
     for (int i = 0; i<2; i++)
     {
-      newx = x + cos(radians(angle[i]))*120;
-      newy = y +sin(radians(angle[i]))*(50);
+      newx = mouseX + cos(radians(angle[i]))*30;
+      newy = mouseY +sin(radians(angle[i]))*(30);
       if (i == 0) {  
         angle[i] += speed;
       } else {  
@@ -34,29 +36,29 @@ class animation {
       ellipse(newx, newy, 12, 12);
     }
 
-    noFill();
-    //shape(button);
-    //button.setFill(color(255, 50));
-    //ellipse(width/2, height/2, 135, 135);
-
     lights();
-
-
-    fill(255, 0, 0);
     pushMatrix();
     translate(width/2, height/2);
     rotateX(radians(frameCount*3));
     rotateY(radians(frameCount*3));
+    if (hover != true){ //if mouse is not over sphere display this color   
+         button.setFill(color(255, 0, 0));
+    }
+     button.setStroke(color(69, 298, 208));
     sphereDetail(100);
-    sphere(80);
+    shape(button);
     popMatrix();
 
     return angle;
   }
 
   int loadingScreen() {
-      fill(255, 0, 0);
-       stroke(69, 298, 208);
+     if (loadingScreenSpeech ==0 ){
+       input2.speech("My name is Jarvis and I am here to assist you");
+       loadingScreenSpeech += 1;
+     }
+    stroke(69, 298, 208);
+    //fill(color(255, 0, 0));
     pushMatrix();
     translate(width/2, height/2);
     rotateX(radians(frameCount*1));
@@ -84,11 +86,11 @@ class animation {
   }
 
   void hoverCircle(float circleCenterX, float circleCenterY, float x, float y, int diameter) {
-    boolean hover = false;
+    hover = false;
     hover = overCircle(circleCenterX, circleCenterY, x, y, diameter);
     if (hover == true)
     {
-      button.setFill(color(255, 25, 25));
+          button.setFill(color(255, 50, 50));
     }
   }
 
@@ -116,8 +118,8 @@ class animation {
     load.fill(255, 0, 0);
     load.strokeWeight(10);
 
-    newx = x + cos(radians(loadingAngle))*70;
-    newy = y +sin(radians(loadingAngle))*70;
+    newx = x + cos(radians(loadingAngle))*80;
+    newy = y +sin(radians(loadingAngle))*80;
     if (loadingAngle < 30 || loadingAngle > 260)
     {
       load.stroke(242, 13, 59);

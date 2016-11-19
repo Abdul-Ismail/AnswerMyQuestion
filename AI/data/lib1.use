@@ -1,0 +1,133 @@
+model Library
+
+class Book
+  attributes
+    title : String
+    author : String
+    no_copies : Integer
+    no_onshelf : Integer
+	no_reserved : Integer
+  operations
+    borrow()
+    begin
+        self.no_onshelf := self.no_onshelf - 1
+    end
+	
+	collectRes(m : Member)
+	begin
+		self.no_reserved := self.no_reserved - 1;
+		self.no_onshelf := self.no_onshelf + 1;
+		m.borrow(m.reservation)
+	end
+	
+	reserve()
+	begin
+		self.no_reserved := self.no_reserved + 1;
+		self.no_onshelf := self.no_onshelf - 1
+	end
+	
+	return()
+	begin
+        self.no_onshelf := self.no_onshelf + 1
+    end
+
+end
+
+enum BookStatus { onShelf, onLoan, reserved}
+
+class Copy
+  attributes
+    status : String init = 'onShelf'
+	curentstate :  BookStatus init = #onShelf
+
+  operations
+    borrow( m : Member)
+    begin
+        self.status := 'onLoan';
+        self.book.borrow()
+    end
+	
+	reserve()
+	begin
+		self.status := 'reserved';
+		self.book.reserve()
+	end
+	
+	return(m : Member)
+	begin
+		self.status := 'onShelf';
+        self.book.return()
+	end
+	
+	statemachines
+		psm States
+		states
+			newTitle : initial
+			onShelf		[status= 'onShelf']
+			onLoan		[status = 'onLoan']
+			reserved	[status='reserved']
+		transitions
+			newTitle-> onShelf {create}
+			onShelf-> onLoan {borrow()}
+			onShelf-> reserved {reserve()}
+			reserved -> onLoan { borrow() }
+			onLoan-> onShelf { return() }
+		end
+end		
+
+   
+    
+class Member 
+  attributes 
+    name : String
+    address : String
+    no_onloan : Integer
+	reservation : Copy
+    status : String
+    fine : Integer
+  operations
+    borrow(c : Copy)
+    begin
+        insert (self, c) into HasBorrowed;
+        self.no_onloan := self.no_onloan + 1;
+        c.borrow(self)
+    end   
+	
+	collectRes(b : Book)
+	begin
+		delete (self, self.reservation.book) from HasReserved;
+		b.collectRes(self);
+		self.reservation := null
+	end
+
+	reserve(c : Copy)
+	begin
+		insert (self, c.book) into HasReserved;
+		self.reservation := c;
+		c.reserve()
+	end
+	
+
+	return(c : Copy)
+	begin
+		delete (self, c) from HasBorrowed;
+        self.no_onloan := self.no_onloan - 1;
+        c.return(self)
+	end
+	
+end    
+
+association HasBorrowed between
+    Member[0..1] role borrower
+    Copy[*] role borrowed
+end
+
+association HasReserved between
+    Member[0..1] role reserver
+    Book[*] role reserved
+end
+
+association CopyOf between
+    Copy[1..*] role copies
+    Book[1] role book
+end  

@@ -7,6 +7,7 @@ class user_input {
   PImage[] cards = new PImage[52];
   int nextCall;
   int callOnce = 0; // get voice called once
+  boolean flipCardSpeech = false; //speech once when flipping card
 
   BufferedReader reader;
   String line;
@@ -117,6 +118,7 @@ class user_input {
       cardPicked = cardToNum.get(userInput);
       insertedWordCounter = 0;
       userInput = "";
+      flipCardSpeech = true;
       return nextCall = 5;
     } else if(userInput != ""){ 
       speech(userInput); //if userinput is not null then it will text to speech the answer
@@ -161,6 +163,11 @@ class user_input {
   flip.rotateY(rotationPoint * 2.0);
   flip.endDraw();
   image(flip, 0, 0); 
+   //play speech once when this function is being called continouslly in draw
+      if (flipCardSpeech == true) {  
+        speech("I hope this is your card, otherwise it will be embarassing");
+        flipCardSpeech = false;
+      }
   
 }
   
