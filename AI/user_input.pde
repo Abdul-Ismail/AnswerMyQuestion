@@ -47,7 +47,7 @@ class user_input {
     }
     
     
-  flip = createGraphics(1040, 520, P3D);
+  flip = createGraphics(400, 520, P3D);
   backOfCard = loadImage("back.png" ); //to dispaly the back of the card 
   }
 

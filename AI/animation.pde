@@ -58,7 +58,7 @@ class animation {
        loadingScreenSpeech += 1;
      }
     stroke(69, 298, 208);
-    //fill(color(255, 0, 0));
+    fill(color(255, 0, 0));
     pushMatrix();
     translate(width/2, height/2);
     rotateX(radians(frameCount*1));
