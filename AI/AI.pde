@@ -7,9 +7,12 @@ float[] angle = new float[2]; //used to store angle
 float timeDistance;
 float timeX= 100;
 float timeY= 120;
+PImage bg;
+
 
 void setup() {
   size(1040, 520, P3D);
+   bg = loadImage("background.jpg");
   input = new user_input();
   ui = new animation();
   time = new timeUI();
@@ -17,7 +20,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(bg);
   
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
   
@@ -59,6 +62,8 @@ void keyPressed()
 void mousePressed() {
   if (value != 10){
   value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 160);
+  designUI.button1Clicked();
+  designUI.button2Clicked();
   }
 }
 
