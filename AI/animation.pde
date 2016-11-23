@@ -7,12 +7,15 @@ class animation {
   int size = 250;
   boolean hover;
   int loadingScreenSpeech = 0;
+  PShape screen;
+int rectY = 0;
 
 
   animation() {
     input2 = new user_input();
     load = createGraphics(width+50, height+160);
     button = createShape(SPHERE, 80); // main circle in screen, will be accessed by other functions
+      screen = createShape(RECT, 70, 200, 150, 250); 
   }
 
   float[] circleSpin() {
@@ -148,5 +151,23 @@ class animation {
     image(load, 120, 60);
 
     return nextCall;
+  }
+  
+  void textScreen(){
+    screen.setFill(color(0));
+    strokeWeight(5);
+    
+    if (rectY !=250)
+    {
+     rectY +=2;
+    }
+    
+   if (rectY == 250)
+   {
+       shape(screen);
+  
+    }  
+    noFill();
+    rect(70, 200, 150, rectY,20);
   }
 }

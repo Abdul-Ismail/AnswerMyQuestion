@@ -3,19 +3,17 @@ class design{
 float angle2 = 0;
 int button1=0;
 int button2=0;
-PShape screen;
 
 design(){
-  screen = createShape(RECT, 70, 200, 150, 250); 
+
 }
 
 void circleDesign(){
   
-  noFill();
+
 
   strokeWeight(2);
   ellipse(width/2, height/2, 175, 175);
-  noFill();
 
   strokeWeight(2);
   ellipse(width/2, height/2, 325, 325);
@@ -34,7 +32,7 @@ void circleDesign(){
       //button2 
   ellipse(560,155,35,35);
   if (overButton(560, 155, mouseX, mouseY, 35)){
-      background(0);
+      stroke(0);
     }else //
     
     if (button2 == 1){
@@ -113,15 +111,4 @@ boolean overButton(float circleCenterX, float circleCenterY, float x, float y, f
     } 
   }
   
-  void textScreen(){
-    screen.setFill(color(0));
-    shape(screen);
-    pushStyle();
-    strokeWeight(5);
-    rect(70, 200, 150, 250,7);
-    pushStyle();
- 
-  }
-
-
 }

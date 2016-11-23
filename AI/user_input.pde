@@ -2,7 +2,7 @@ class user_input {
 
   int insertedWordCounter = 0; //keeps track of element user is inputing
   char firstLetter = ' ';
-  String questionString = "Abdul please answer this question";   
+  String questionString = "Jarvis please answer\n the following question\n ";   
   String userInput = ""; //array for input by the user 
   PImage[] cards = new PImage[52];
   int nextCall;
@@ -12,6 +12,7 @@ class user_input {
   String displayHidden = "";
   String realUserInput = "";
   int stringCounter =0; //counts length of string to skip to next line when displaying on screen
+  boolean copyOnce = false;
 
   BufferedReader reader;
   String line;
@@ -62,6 +63,7 @@ class user_input {
       print = 2;
       realUserInput = "";
       displayHidden ="";
+      copyOnce = false;
       println();
       key = ' ';//to remove key from having enter stored
       return nextCall;
@@ -79,6 +81,10 @@ class user_input {
        displayHidden +=questionString.charAt(insertedWordCounter);
        print = 1;
       } else {
+      if (copyOnce == false){
+        realUserInput +=displayHidden;
+        copyOnce = true;
+      }
       realUserInput += key;
       print = 2;
       } //print whats being written rather from string once end of string is reached, to avoid outofbound error
@@ -204,7 +210,7 @@ void printText(){
       stringCounter += 1;
       key = ']';
     }
-      if (stringCounter >30 )
+      if (stringCounter >25 )
        {
          println(stringCounter);
         realUserInput+= "\n";

@@ -21,20 +21,17 @@ void setup() {
 
 void draw() {
   background(bg);
- 
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
 
   
   
   //if (value == 10 ) {
-   // value = ui.loadingScreen();
- // }else
+  //  value = ui.loadingScreen();
+  //}else
   if (value !=10 && value!=5){
     angle = ui.circleSpin();
     //timeDistance = time.timeDisplay(timeX, timeY);
     designUI.circleDesign();
-    designUI.textScreen();
-     input.printText();
   }else   {input.rotateCard();
   }
   
@@ -45,6 +42,11 @@ void draw() {
   if (value == 3)
   {
     value = input.answer();
+  }
+  
+  if (value == 1 || value ==2){
+        ui.textScreen();
+         input.printText();
   }
   
 
