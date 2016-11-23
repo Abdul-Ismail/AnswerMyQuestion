@@ -23,6 +23,7 @@ void draw() {
   background(bg);
   
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
+  input.printText();
   
   //if (value == 10 ) {
    // value = ui.loadingScreen();

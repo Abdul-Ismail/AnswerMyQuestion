@@ -8,6 +8,9 @@ class user_input {
   int nextCall;
   int callOnce = 0; // get voice called once
   boolean flipCardSpeech = false; //speech once when flipping card
+  int print = 0;
+  String displayHidden = "";
+  String realUserInput = "";
 
   BufferedReader reader;
   String line;
@@ -55,6 +58,8 @@ class user_input {
     nextCall = 1;
     if (key == ENTER) {
       nextCall = 2;
+      print = 2;
+      realUserInput = "";
       println();
       key = ' ';//to remove key from having enter stored
       return nextCall;
@@ -69,9 +74,11 @@ class user_input {
     case '/':  //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
       if (insertedWordCounter < questionString.length())//display up until the end of string
       {
-        print(questionString.charAt(insertedWordCounter));
+       displayHidden +=questionString.charAt(insertedWordCounter);
+       print = 1;
       } else {
-        print(key);
+      realUserInput += key;
+      print = 2;
       } //print whats being written rather from string once end of string is reached, to avoid outofbound error
 
       if (key == '.') { 
@@ -83,14 +90,16 @@ class user_input {
       break;
     case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
 
-      print(questionString.charAt(insertedWordCounter)); //will print the rest of the string from where the user pressed '.'
+        displayHidden +=questionString.charAt(insertedWordCounter); //will print the rest of the string from where the user pressed '.'
+        print = 1;
       firstLetter = '.';
 
       break;
     case ',':
 
     default:  //if user did not click the secret key then just print out whats being entered and store that 
-      print(key);
+      realUserInput += key;
+      print = 2;
     }
 
     insertedWordCounter+=1; 
@@ -103,10 +112,13 @@ class user_input {
       speech("what is your question ?"); 
       callOnce++;
     } //need this to be displayed only once
-    print(key);
+     print = 2;
+     realUserInput += key;
     if (key == ENTER) {
       nextCall = 4 ;
       callOnce = 0; //to enter that loop again if another question is asked
+      print = 0;
+      realUserInput = "";
     }
     return nextCall;
   }
@@ -170,6 +182,26 @@ println(rotationPoint);
         flipCardSpeech = false;
       }
   
+}
+
+void printText(){
+  if (print ==1)
+  {
+  text(displayHidden, 150, 350);
+   if (key == BACKSPACE && displayHidden.length() > 0) {
+    displayHidden = displayHidden.substring(0, displayHidden.length()-1);
+     key = ' '; //remove backspace from being stored in buffer
+     insertedWordCounter -=1; //goes back one in order to be at right position of string 
+  } 
+  }
+  
+  if (print ==2){
+    text(realUserInput, 150, 350);
+    if (key == BACKSPACE && realUserInput.length() > 0) {
+    realUserInput = realUserInput.substring(0, realUserInput.length()-1);
+     key = ' '; //remove backspace from being stored in buffer
+  }
+  }
 }
   
   

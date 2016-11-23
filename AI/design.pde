@@ -24,19 +24,19 @@ void circleDesign(){
     }else //
     
       if (button1 == 1){
-          println("SSSasasasssSSSSS");
-      }else { println("DDDDDD");
+          //println("SSSasasasssSSSSS");
+      }else { //println("DDDDDD");
       }
     
       //button2 
   ellipse(560,155,35,35);
-  if (overButton(560, 155, mouseX, mouseY, 17.6)){
+  if (overButton(560, 155, mouseX, mouseY, 35)){
       background(0);
     }else //
     
     if (button2 == 1){
-          println("SSSSSSSS");
-      }else { println("DDDDDD");
+         // println("SSSSSSSS");
+      }else {// println("DDDDDD");
       }
     
 
