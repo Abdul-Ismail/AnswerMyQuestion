@@ -8,22 +8,20 @@ class timeUI{
   PVector v2 ;
   float a;
   noFill();
-  println(mouseX, mouseY);
 
   //calculates the distance between the two vectors which is the centre and moving ball
   v1 = new PVector(width/2, height/2);
   v2 = new PVector(x, y); 
   a = PVector.angleBetween(v1, v2);
-  noFill();
+
 
   int b = int(degrees(a)); //converts a into degrees and then into an integeer
-  println(a);
   d = dist(mainX, mainY, mouseX, mouseY);
-
+    stroke(b*10, b*1, b*6);
   ellipse(mainX, mainY, 130, 130);
   ellipse(mainX, mainY, 180, 180);
 
-  fill(b*5, b*21, b*15);
+  //fill(b*5, b*21, b*15);
   ellipse(x, y, 25, 25);
 
   //display time
@@ -37,7 +35,6 @@ class timeUI{
   text(":", mainX+30, mainY);
   textSize(20);
   text(s, mainX+35, mainY);
-  
   return d;
 }
 }

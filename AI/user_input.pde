@@ -47,7 +47,7 @@ class user_input {
     }
     
     
-  flip = createGraphics(400, 520, P3D);
+  flip = createGraphics(1040, 520, P3D);
   backOfCard = loadImage("back.png" ); //to dispaly the back of the card 
   }
 
@@ -146,11 +146,12 @@ class user_input {
    /*reason for using phrapihcs is that we need the background to constanlty refresh 
    but putting it in draw refreshed background and gets rid of the card*/
    flip.beginDraw();
+   flip.noFill();
     flip.background(0);
-    flip.translate(200, 50);  
+     flip.translate(550, 150);  
     flip.rotateY(rotationPoint);
-
- if (rotationPoint < 2.2099984)
+println(rotationPoint);
+ if (rotationPoint < 1.5810179)
  {
      flip.image(backOfCard, 20,20, 100, 145.2);
  }else   flip.image(cards[cardPicked], 20,20, 100, 145.2);
@@ -159,13 +160,13 @@ class user_input {
      rotationPoint += 0.01;
  }
   
-  flip.translate(200, 50);  
+
   flip.rotateY(rotationPoint * 2.0);
   flip.endDraw();
   image(flip, 0, 0); 
    //play speech once when this function is being called continouslly in draw
       if (flipCardSpeech == true) {  
-        speech("I hope this is your card, otherwise it will be embarassing");
+        speech("Is this the ard you picked ?");
         flipCardSpeech = false;
       }
   

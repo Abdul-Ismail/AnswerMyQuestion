@@ -1,7 +1,8 @@
 user_input input;
 animation ui;
 timeUI time;
-int value = 10;
+design designUI;
+int value = 0;
 float[] angle = new float[2]; //used to store angle 
 float timeDistance;
 float timeX= 100;
@@ -12,17 +13,23 @@ void setup() {
   input = new user_input();
   ui = new animation();
   time = new timeUI();
+  designUI = new design();
 }
 
 void draw() {
   background(0);
- 
-  timeDistance = time.timeDisplay(timeX, timeY);
+  
   ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
   
-  if (value == 10) {
-    value = ui.loadingScreen();
-  }else  angle = ui.circleSpin();
+  //if (value == 10 ) {
+   // value = ui.loadingScreen();
+ // }else
+  if (value !=10 && value!=5){
+    angle = ui.circleSpin();
+    //timeDistance = time.timeDisplay(timeX, timeY);
+    designUI.circleDesign();
+  }else   {input.rotateCard();
+  }
   
   if (value == 4) {
     value = ui.loading();
@@ -33,10 +40,7 @@ void draw() {
     value = input.answer();
   }
   
-    if (value == 5)
-  {
-    input.rotateCard();
-  }
+
 }
 
 void keyPressed()
