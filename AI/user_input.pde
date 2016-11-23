@@ -11,6 +11,7 @@ class user_input {
   int print = 0;
   String displayHidden = "";
   String realUserInput = "";
+  int stringCounter =0; //counts length of string to skip to next line when displaying on screen
 
   BufferedReader reader;
   String line;
@@ -60,6 +61,7 @@ class user_input {
       nextCall = 2;
       print = 2;
       realUserInput = "";
+      displayHidden ="";
       println();
       key = ' ';//to remove key from having enter stored
       return nextCall;
@@ -185,9 +187,10 @@ println(rotationPoint);
 }
 
 void printText(){
+  fill(28, 236,76);
   if (print ==1)
   {
-  text(displayHidden, 150, 350);
+  text(displayHidden, 75, 220);
    if (key == BACKSPACE && displayHidden.length() > 0) {
     displayHidden = displayHidden.substring(0, displayHidden.length()-1);
      key = ' '; //remove backspace from being stored in buffer
@@ -196,7 +199,17 @@ void printText(){
   }
   
   if (print ==2){
-    text(realUserInput, 150, 350);
+    text(realUserInput, 85, 220);
+    if (key != ']'){
+      stringCounter += 1;
+      key = ']';
+    }
+      if (stringCounter >30 )
+       {
+         println(stringCounter);
+        realUserInput+= "\n";
+          stringCounter = 0;
+       }  
     if (key == BACKSPACE && realUserInput.length() > 0) {
     realUserInput = realUserInput.substring(0, realUserInput.length()-1);
      key = ' '; //remove backspace from being stored in buffer

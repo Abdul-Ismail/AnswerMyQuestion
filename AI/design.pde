@@ -3,8 +3,11 @@ class design{
 float angle2 = 0;
 int button1=0;
 int button2=0;
+PShape screen;
 
-
+design(){
+  screen = createShape(RECT, 70, 200, 150, 250); 
+}
 
 void circleDesign(){
   
@@ -108,6 +111,16 @@ boolean overButton(float circleCenterX, float circleCenterY, float x, float y, f
       }else  button2 = 1;
 
     } 
+  }
+  
+  void textScreen(){
+    screen.setFill(color(0));
+    shape(screen);
+    pushStyle();
+    strokeWeight(5);
+    rect(70, 200, 150, 250,7);
+    pushStyle();
+ 
   }
 
 
