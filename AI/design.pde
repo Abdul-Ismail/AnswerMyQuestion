@@ -78,6 +78,22 @@ void circleDesign(){
      strokeWeight(2);
     arc(0, 0, 395, 395, 0, HALF_PI);
     popMatrix(); 
+    
+    
+    //time 
+    
+  int mainX = width/2;
+  int mainY = 500;
+  int s = second();  // Values from 0 - 59
+  int m = minute();  // Values from 0 - 59
+  int h = hour();    // Values from 0 - 23
+  textSize(25);
+  text(h, mainX-40, mainY); 
+  text(":", mainX-10, mainY); 
+  text(m, mainX, mainY);
+  text(":", mainX+30, mainY);
+  textSize(20);
+  text(s, mainX+35, mainY);
 }
 
 boolean overButton(float circleCenterX, float circleCenterY, float x, float y, float diameter) {

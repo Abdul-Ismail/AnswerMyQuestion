@@ -8,7 +8,7 @@ class animation {
   boolean hover;
   int loadingScreenSpeech = 0;
   PShape screen;
-int rectY = 0;
+  int rectY = 0;
 
 
   animation() {
@@ -27,7 +27,7 @@ int rectY = 0;
     noFill();
     stroke(69, 298, 208);
 
-    for (int i = 0; i<2; i++)
+   /* for (int i = 0; i<2; i++)
     {
       newx = mouseX + cos(radians(angle[i]))*30;
       newy = mouseY +sin(radians(angle[i]))*(30);
@@ -37,7 +37,7 @@ int rectY = 0;
         angle[i] -= speed;
       }
       ellipse(newx, newy, 12, 12);
-    }
+    }*/
 
     lights();
     pushMatrix();
@@ -157,16 +157,29 @@ int rectY = 0;
     screen.setFill(color(0));
     strokeWeight(5);
     
-    if (rectY !=250)
+    if (rectY <=250)
     {
-     rectY +=2;
+     rectY +=3;
     }
     
-   if (rectY == 250)
+   if (rectY >= 250)
    {
        shape(screen);
   
     }  
+    noFill();
+    rect(70, 200, 150, rectY,20);
+  }
+  
+  void removeTextScreen(){
+    screen.setFill(color(0));
+    strokeWeight(5);
+    
+    if (rectY !=0)
+    {
+     rectY -=3;
+    }
+
     noFill();
     rect(70, 200, 150, rectY,20);
   }

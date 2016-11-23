@@ -37,6 +37,7 @@ void draw() {
   
   if (value == 4) {
     value = ui.loading();
+    ui.removeTextScreen();
   }
 
   if (value == 3)
