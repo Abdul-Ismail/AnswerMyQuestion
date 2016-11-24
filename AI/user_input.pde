@@ -13,7 +13,8 @@ class user_input {
   String realUserInput = "";
   int stringCounter =0; //counts length of string to skip to next line when displaying on screen
   boolean copyOnce = false;
-  
+
+
 
   BufferedReader reader;
   String line;
@@ -164,67 +165,69 @@ class user_input {
 
 
   void rotateCard() {
+
+
     /*reason for using phrapihcs is that we need the background to constanlty refresh 
      but putting it in draw refreshed background and gets rid of the card*/
-    flip.beginDraw();
-    flip.noFill();
-    flip.background(0);
-    flip.translate(150, 15);  
-    flip.rotateY(rotationPoint);
 
-    if (rotationPoint < 1.5810179)
-    {
-      flip.image(backOfCard, 0, 0, 85, 123.42);
-    } else   flip.image(cards[cardPicked], 0, 0, 85, 123.42);
+      flip.beginDraw();
+      flip.noFill();
+      flip.background(0);
+      flip.translate(150, 15);  
+      flip.rotateY(rotationPoint);
 
-    if (rotationPoint <= 3.1699975) {
-      rotationPoint += 0.01;
-    }
-
-
-    flip.rotateY(rotationPoint * 2.0);
-    flip.endDraw();
-    image(flip, 759, 295); 
-    //play speech once when this function is being called continouslly in draw
-    if (flipCardSpeech == true) {  
-      speech("Is this the ard you picked ?");
-      flipCardSpeech = false;
-    }
-  }
-
-  void printText() {
-    fill(28, 236, 76);
-    textSize(10);
-    if (print ==1)
-    {
-      text(displayHidden, 75, 220);
-      if (key == BACKSPACE && displayHidden.length() > 0) {
-        displayHidden = displayHidden.substring(0, displayHidden.length()-1);
-        userInput = userInput.substring(0, userInput.length()-1);
-        key = ' '; //remove backspace from being stored in buffer
-        insertedWordCounter -=1; //goes back one in order to be at right position of string
-      }
-    }
-
-    if (print ==2) {
-      text(realUserInput, 85, 220);
-      if (key != ']' && key != BACKSPACE) {
-        stringCounter += 1;
-        key = ']';
-      }
-      if (stringCounter >25 )
+      if (rotationPoint < 1.5810179)
       {
-        realUserInput+= "\n";
-        stringCounter = 0;
-      }  
-      if (key == BACKSPACE && realUserInput.length() > 0) {
-        realUserInput = realUserInput.substring(0, realUserInput.length()-1);
-        stringCounter -= 1;
-        key = ' '; //remove backspace from being stored in buffer
-      }
-    }
-    noFill();
-  }
+        flip.image(backOfCard, 0, 0, 85, 123.42);
+      } else   flip.image(cards[cardPicked], 0, 0, 85, 123.42);
 
- 
-}//end class
+      if (rotationPoint <= 3.1699975) {
+        rotationPoint += 0.01;
+      }
+
+
+      flip.rotateY(rotationPoint * 2.0);
+      flip.endDraw();
+      image(flip, 759, 295); 
+      //play speech once when this function is being called continouslly in draw
+      if (flipCardSpeech == true) {  
+        speech("Is this the ard you picked ?");
+        flipCardSpeech = false;
+      
+    }
+    }
+
+    void printText() {
+      fill(28, 236, 76);
+      textSize(10);
+      if (print ==1)
+      {
+        text(displayHidden, 75, 220);
+        if (key == BACKSPACE && displayHidden.length() > 0) {
+          displayHidden = displayHidden.substring(0, displayHidden.length()-1);
+          userInput = userInput.substring(0, userInput.length()-1);
+          key = ' '; //remove backspace from being stored in buffer
+          insertedWordCounter -=1; //goes back one in order to be at right position of string
+        }
+      }
+
+      if (print ==2) {
+        text(realUserInput, 85, 220);
+        if (key != ']' && key != BACKSPACE) {
+          stringCounter += 1;
+          key = ']';
+        }
+        if (stringCounter >25 )
+        {
+          realUserInput+= "\n";
+          stringCounter = 0;
+        }  
+        if (key == BACKSPACE && realUserInput.length() > 0) {
+          realUserInput = realUserInput.substring(0, realUserInput.length()-1);
+          stringCounter -= 1;
+          key = ' '; //remove backspace from being stored in buffer
+        }
+      }
+      noFill();
+    }
+  }//end class

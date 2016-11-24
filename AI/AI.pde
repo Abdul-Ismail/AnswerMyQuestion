@@ -8,6 +8,9 @@ float timeDistance;
 float timeX= 100;
 float timeY= 120;
 PImage bg;
+float timeCounter;
+float currentTime;
+boolean callOnce = false;
 
 
 void setup() {
@@ -21,18 +24,27 @@ void setup() {
 
 void draw() {
   background(bg);
+  timeCounter = millis() - currentTime;
 
-  
-  if (value !=10 && value!=5){
+  if (value !=10){
     angle = ui.circleSpin();
-    //timeDistance = time.timeDisplay(timeX, timeY);
-      designUI.circleDesign();
-      ui.hoverCircle(mouseX, mouseY, width/2, height/2, 200);
-      designUI.cardScreen();
-      input.rotateCard();
-  }else if (value !=10)
-    {input.rotateCard();
+    designUI.circleDesign();
+    ui.hoverCircle(mouseX, mouseY, width/2, height/2, 200);
   }else    value = ui.loadingScreen();
+  
+  if (value == 5)
+    {
+            designUI.cardScreen();
+        if( timeCounter > 5000 && timeCounter < 20000 && callOnce == true){
+                 input.rotateCard();
+          }
+          
+      if (callOnce == false) {
+         currentTime = millis();; //sets counter back to zero
+         callOnce = true;
+      }
+
+    }
   
   if (value == 4) {
     value = ui.loading();

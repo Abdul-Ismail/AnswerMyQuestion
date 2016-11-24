@@ -7,6 +7,12 @@ int button1=0;
 int button2=0;
     float line1X = 685;
     float line2Y = 260;
+        float rectY = 0;
+            float middlelineX1 = 870;
+    float middlelineX2 = 870;
+        float rectStart = 870;
+        float rectWidth = 0;
+
 
 
 design(){
@@ -65,6 +71,8 @@ void circleDesign(){
 
 
   pushMatrix();
+
+        
     translate(width/2, height/2);
        rotate(radians(angle1));
        angle1+=speed1;
@@ -115,24 +123,35 @@ void circleDesign(){
  void cardScreen() {
     stroke(255);
     
-    if (line1X < 870)
-       {
-          line1X+=1;
-       }else if (line2Y < 295)
-                {
-                  line2Y +=1;
-                }
-        if (speed1 > 0){
+    //slows down the moving arvs around center
+    if (speed1 > 0){
           speed1 -=0.01;
         }
         
          if (speed2 > 0){
           speed2 -=0.01;
         }
+       
+    
+    if (line1X < 870 && speed1 <0)
+       {
+          line1X+=2;
+       }else if (line2Y < 295 && speed1 <0)
+             {
+                line2Y +=2;
+             }else if (rectStart > 759 && speed1 < 0){
+              rectStart -=2;
+              rectWidth +=4;
+            }else if (rectY < 150 && speed1 < 0){
+               rectY += 2;
+            }
+      
     line(685, 260, line1X, 260);
     line(870, 260, 870, line2Y);
-    println(mouseX, mouseY);
-    rect(759, 295, 230, 150);
+   
+    
+
+    rect(rectStart, 295, rectWidth, rectY);
   }
 
 boolean overButton(float circleCenterX, float circleCenterY, float x, float y, float diameter) {
