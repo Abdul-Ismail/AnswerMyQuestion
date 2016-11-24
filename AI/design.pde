@@ -1,8 +1,13 @@
 class design{
  float angle1 = 0;
 float angle2 = 0;
+float speed1= 1;
+float speed2= 2;
 int button1=0;
 int button2=0;
+    float line1X = 685;
+    float line2Y = 260;
+
 
 design(){
 
@@ -62,7 +67,7 @@ void circleDesign(){
   pushMatrix();
     translate(width/2, height/2);
        rotate(radians(angle1));
-       angle1++;
+       angle1+=speed1;
   
   arc(width/2, height/2, 325, 325, 0, HALF_PI);
   noFill();
@@ -74,7 +79,7 @@ void circleDesign(){
   arc(0, 0, 365, 365, PI+QUARTER_PI, TWO_PI);
   
      rotate(radians(angle2));
-       angle2-=2;
+       angle2-=speed2;
      strokeWeight(2);
     arc(0, 0, 395, 395, 0, HALF_PI);
     popMatrix(); 
@@ -106,6 +111,29 @@ void circleDesign(){
     text(s, 65, 35);
   popMatrix();
 }
+
+ void cardScreen() {
+    stroke(255);
+    
+    if (line1X < 870)
+       {
+          line1X+=1;
+       }else if (line2Y < 295)
+                {
+                  line2Y +=1;
+                }
+        if (speed1 > 0){
+          speed1 -=0.01;
+        }
+        
+         if (speed2 > 0){
+          speed2 -=0.01;
+        }
+    line(685, 260, line1X, 260);
+    line(870, 260, 870, line2Y);
+    println(mouseX, mouseY);
+    rect(759, 295, 230, 150);
+  }
 
 boolean overButton(float circleCenterX, float circleCenterY, float x, float y, float diameter) {
     boolean onCircle;

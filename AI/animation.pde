@@ -68,9 +68,11 @@ class animation {
     rotateY(radians(frameCount*1));
     sphereDetail(100);
     sphere(size);
-    if (size != 80){size-=1;} else{
+    size-=0.5; 
+    if (size <90){
       return 0;
     }
+    
     popMatrix();
     return 10;
   }

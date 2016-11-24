@@ -13,12 +13,13 @@ class user_input {
   String realUserInput = "";
   int stringCounter =0; //counts length of string to skip to next line when displaying on screen
   boolean copyOnce = false;
+  
 
   BufferedReader reader;
   String line;
   int stopLoop = 0;
   HashMap<String, Integer> cardToNum = new HashMap<String, Integer>();
-  
+
   PImage backOfCard; //back of the card 
   float rotationPoint = 0.0; //start of rotation
   PGraphics flip; //used for rotatingCard function
@@ -26,8 +27,8 @@ class user_input {
 
   user_input()
   {
-        
-      for ( int i = 0; i< 52; i++ )
+
+    for ( int i = 0; i< 52; i++ )
     {
       cards[i] = loadImage( i + ".png" );
     }
@@ -50,10 +51,10 @@ class user_input {
         cardToNum.put(pieces[0], parseInt(pieces[1]));
       }
     }
-    
-    
-  flip = createGraphics(1040, 520, P3D);
-  backOfCard = loadImage("back.png" ); //to dispaly the back of the card 
+
+
+    flip = createGraphics(230, 150, P3D);
+    backOfCard = loadImage("back.png" ); //to dispaly the back of the card
   }
 
   int ask() {
@@ -78,15 +79,15 @@ class user_input {
     case '/':  //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
       if (insertedWordCounter < questionString.length())//display up until the end of string
       {
-       displayHidden +=questionString.charAt(insertedWordCounter);
-       print = 1;
+        displayHidden +=questionString.charAt(insertedWordCounter);
+        print = 1;
       } else {
-      if (copyOnce == false){
-        realUserInput +=displayHidden;
-        copyOnce = true;
-      }
-      realUserInput += key;
-      print = 2;
+        if (copyOnce == false) {
+          realUserInput +=displayHidden;
+          copyOnce = true;
+        }
+        realUserInput += key;
+        print = 2;
       } //print whats being written rather from string once end of string is reached, to avoid outofbound error
 
       if (key == '.') { 
@@ -98,8 +99,8 @@ class user_input {
       break;
     case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
 
-        displayHidden +=questionString.charAt(insertedWordCounter); //will print the rest of the string from where the user pressed '.'
-        print = 1;
+      displayHidden +=questionString.charAt(insertedWordCounter); //will print the rest of the string from where the user pressed '.'
+      print = 1;
       firstLetter = '.';
 
       break;
@@ -114,14 +115,14 @@ class user_input {
 
     return nextCall;
   }//endfunction
-  
-    int question() {
+
+  int question() {
     if (callOnce == 0) {
       speech("what is your question ?"); 
       callOnce++;
     } //need this to be displayed only once
-     print = 2;
-     realUserInput += key;
+    print = 2;
+    realUserInput += key;
     if (key == ENTER) {
       nextCall = 4 ;
       callOnce = 0; //to enter that loop again if another question is asked
@@ -140,9 +141,9 @@ class user_input {
       userInput = "";
       flipCardSpeech = true;
       return nextCall = 5;
-    } else if(userInput != ""){ 
+    } else if (userInput != "") { 
       speech(userInput); //if userinput is not null then it will text to speech the answer
-    }else{
+    } else {
       speech("I only answer to abdul sorry"); //will display this if the user does not enter the answer before hand, e.g if input is empty
       return nextCall = 0;
     } 
@@ -160,70 +161,70 @@ class user_input {
       //do nothing
     }
   }
-  
-  
-  void rotateCard(){
-   /*reason for using phrapihcs is that we need the background to constanlty refresh 
-   but putting it in draw refreshed background and gets rid of the card*/
-   flip.beginDraw();
-   flip.noFill();
+
+
+  void rotateCard() {
+    /*reason for using phrapihcs is that we need the background to constanlty refresh 
+     but putting it in draw refreshed background and gets rid of the card*/
+    flip.beginDraw();
+    flip.noFill();
     flip.background(0);
-     flip.translate(550, 150);  
+    flip.translate(150, 15);  
     flip.rotateY(rotationPoint);
-println(rotationPoint);
- if (rotationPoint < 1.5810179)
- {
-     flip.image(backOfCard, 20,20, 100, 145.2);
- }else   flip.image(cards[cardPicked], 20,20, 100, 145.2);
- 
- if (rotationPoint <= 3.1699975){
-     rotationPoint += 0.01;
- }
-  
 
-  flip.rotateY(rotationPoint * 2.0);
-  flip.endDraw();
-  image(flip, 0, 0); 
-   //play speech once when this function is being called continouslly in draw
-      if (flipCardSpeech == true) {  
-        speech("Is this the ard you picked ?");
-        flipCardSpeech = false;
-      }
-  
-}
+    if (rotationPoint < 1.5810179)
+    {
+      flip.image(backOfCard, 0, 0, 85, 123.42);
+    } else   flip.image(cards[cardPicked], 0, 0, 85, 123.42);
 
-void printText(){
-  fill(28, 236,76);
-   textSize(10);
-  if (print ==1)
-  {
-  text(displayHidden, 75, 220);
-   if (key == BACKSPACE && displayHidden.length() > 0) {
-    displayHidden = displayHidden.substring(0, displayHidden.length()-1);
-     key = ' '; //remove backspace from being stored in buffer
-     insertedWordCounter -=1; //goes back one in order to be at right position of string 
-  } 
-  }
-  
-  if (print ==2){
-    text(realUserInput, 85, 220);
-    if (key != ']'){
-      stringCounter += 1;
-      key = ']';
+    if (rotationPoint <= 3.1699975) {
+      rotationPoint += 0.01;
     }
+
+
+    flip.rotateY(rotationPoint * 2.0);
+    flip.endDraw();
+    image(flip, 759, 295); 
+    //play speech once when this function is being called continouslly in draw
+    if (flipCardSpeech == true) {  
+      speech("Is this the ard you picked ?");
+      flipCardSpeech = false;
+    }
+  }
+
+  void printText() {
+    fill(28, 236, 76);
+    textSize(10);
+    if (print ==1)
+    {
+      text(displayHidden, 75, 220);
+      if (key == BACKSPACE && displayHidden.length() > 0) {
+        displayHidden = displayHidden.substring(0, displayHidden.length()-1);
+        userInput = userInput.substring(0, userInput.length()-1);
+        key = ' '; //remove backspace from being stored in buffer
+        insertedWordCounter -=1; //goes back one in order to be at right position of string
+      }
+    }
+
+    if (print ==2) {
+      text(realUserInput, 85, 220);
+      if (key != ']' && key != BACKSPACE) {
+        stringCounter += 1;
+        key = ']';
+      }
       if (stringCounter >25 )
-       {
-         println(stringCounter);
+      {
         realUserInput+= "\n";
-          stringCounter = 0;
-       }  
-    if (key == BACKSPACE && realUserInput.length() > 0) {
-    realUserInput = realUserInput.substring(0, realUserInput.length()-1);
-     key = ' '; //remove backspace from being stored in buffer
+        stringCounter = 0;
+      }  
+      if (key == BACKSPACE && realUserInput.length() > 0) {
+        realUserInput = realUserInput.substring(0, realUserInput.length()-1);
+        stringCounter -= 1;
+        key = ' '; //remove backspace from being stored in buffer
+      }
+    }
+    noFill();
   }
-  }
-  noFill();
-}
-  
-  
+
+ 
 }//end class
