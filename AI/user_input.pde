@@ -191,7 +191,7 @@ class user_input {
       image(flip, 759, 295); 
       //play speech once when this function is being called continouslly in draw
       if (flipCardSpeech == true) {  
-        speech("Is this the ard you picked ?");
+        speech("Is this the card you picked ?");
         flipCardSpeech = false;
       
     }

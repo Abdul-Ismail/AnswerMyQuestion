@@ -11,6 +11,7 @@ PImage bg;
 float timeCounter;
 float currentTime;
 boolean callOnce = false;
+boolean over = false;
 
 
 void setup() {
@@ -34,9 +35,14 @@ void draw() {
   
   if (value == 5)
     {
+          if( over == false && callOnce == true){       
             designUI.cardScreen();
-        if( timeCounter > 5000 && timeCounter < 20000 && callOnce == true){
+          }
+        if( timeCounter > 7000 && timeCounter < 15000 && callOnce == true){
                  input.rotateCard();
+          }else if (timeCounter > 15000 && callOnce == true){
+            designUI.removeCardScreen();
+            over = true; //stops calling cardscreen once this needs to be called
           }
           
       if (callOnce == false) {

@@ -39,7 +39,6 @@ class animation {
       ellipse(newx, newy, 12, 12);
     }*/
 
-    lights();
     pushMatrix();
     translate(width/2, height/2);
     rotateX(radians(frameCount*3));
@@ -47,11 +46,11 @@ class animation {
     if (hover != true){ //if mouse is not over sphere display this color   
          button.setFill(color(255, 0, 0));
     }
-     button.setStroke(color(69, 298, 208));
+    button.setStroke(color(69, 298, 208));
     sphereDetail(100);
     shape(button);
     popMatrix();
-
+   
     return angle;
   }
 
