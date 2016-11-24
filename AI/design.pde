@@ -87,13 +87,24 @@ void circleDesign(){
   int s = second();  // Values from 0 - 59
   int m = minute();  // Values from 0 - 59
   int h = hour();    // Values from 0 - 23
+  
+  pushMatrix();
+  translate(413, 282);
+  rotate(7.2);
   textSize(25);
-  text(h, mainX-40, mainY); 
-  text(":", mainX-10, mainY); 
-  text(m, mainX, mainY);
-  text(":", mainX+30, mainY);
-  textSize(20);
-  text(s, mainX+35, mainY);
+  text(h, 7,20); 
+  text(":", 20, 20); 
+  text(m, 30 , 20);
+  
+  popMatrix();
+  
+    pushMatrix();
+    translate(413, 282);
+    rotate(7);
+    text(":", 58, 33);
+    textSize(20);
+    text(s, 65, 35);
+  popMatrix();
 }
 
 boolean overButton(float circleCenterX, float circleCenterY, float x, float y, float diameter) {

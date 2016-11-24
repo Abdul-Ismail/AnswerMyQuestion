@@ -194,6 +194,7 @@ println(rotationPoint);
 
 void printText(){
   fill(28, 236,76);
+   textSize(10);
   if (print ==1)
   {
   text(displayHidden, 75, 220);
@@ -221,6 +222,7 @@ void printText(){
      key = ' '; //remove backspace from being stored in buffer
   }
   }
+  noFill();
 }
   
   

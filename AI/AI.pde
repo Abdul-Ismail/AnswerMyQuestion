@@ -2,7 +2,7 @@ user_input input;
 animation ui;
 timeUI time;
 design designUI;
-int value = 0;
+int value = 10;
 float[] angle = new float[2]; //used to store angle 
 float timeDistance;
 float timeX= 100;
@@ -21,13 +21,13 @@ void setup() {
 
 void draw() {
   background(bg);
-  ui.hoverCircle(mouseX, mouseY, width/2, height/2, 100);
+  ui.hoverCircle(mouseX, mouseY, width/2, height/2, 200);
 
   
   
-  //if (value == 10 ) {
-  //  value = ui.loadingScreen();
-  //}else
+  if (value == 10 ) {
+    value = ui.loadingScreen();
+  }else
   if (value !=10 && value!=5){
     angle = ui.circleSpin();
     //timeDistance = time.timeDisplay(timeX, timeY);

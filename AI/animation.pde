@@ -93,7 +93,7 @@ class animation {
     hover = overCircle(circleCenterX, circleCenterY, x, y, diameter);
     if (hover == true)
     {
-          button.setFill(color(255, 50, 50));
+          button.setFill(color(255, 50, 100));
     }
   }
 
