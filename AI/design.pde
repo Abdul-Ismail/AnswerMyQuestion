@@ -42,7 +42,7 @@ class design {
     //button2 
     ellipse(560, 155, 35, 35);
     if (overButton(560, 155, mouseX, mouseY, 35)) {
-      stroke(0);
+
     } else //
 
     if (button2 == 1) {

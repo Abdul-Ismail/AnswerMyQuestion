@@ -11,7 +11,7 @@ class animation {
   int rectY = 0;
   float speedButtonX = 50;
   float sphereAngle;
-  float sphereSpeed;
+  float sphereSpeed = 1;
 
 
   animation() {
@@ -60,17 +60,19 @@ class animation {
   
   void sphereSpeed(int i){
     ellipse(speedButtonX,50,10,10);
-    if (overCircle(speedButtonX, 50,mouseX, mouseY,10)){
+    line(40,50, 110, 50);
+        if (overCircle(speedButtonX, 50,mouseX, mouseY,10)){
+         
       
-      
-      if (i ==1){
-        if (speedButtonX >= 50 && speedButtonX <= 100)
-        {
-        speedButtonX = mouseX;
-        sphereSpeed = speedButtonX /10;
-        }
-      }
-    }
+          if (i ==1){
+            if (mouseX >= 50 && mouseX <= 100)
+            {
+            speedButtonX = mouseX;
+            sphereSpeed = speedButtonX /10;
+
+            }
+          }
+        }  
   }
 
   int loadingScreen() {

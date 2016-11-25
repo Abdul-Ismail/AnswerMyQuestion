@@ -2,6 +2,7 @@ user_input input;
 animation ui;
 timeUI time;
 design designUI;
+setting set;
 int value = 0;
 float[] angle = new float[2]; //used to store angle 
 PImage bg;
@@ -18,12 +19,14 @@ void setup() {
   ui = new animation();
   time = new timeUI();
   designUI = new design();
+  set = new setting();
 }
 
 void draw() {
   background(bg);
   timeCounter = millis() - currentTime;
   ui.sphereSpeed(0);
+  set.settingButton(0);
 
   if (value !=10){
     angle = ui.circleSpin();
@@ -86,10 +89,15 @@ void mousePressed() {
   value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 160);
   designUI.button1Clicked();
   designUI.button2Clicked();
+  set.settingButton(1);
+
   }
 }
 
   void mouseDragged() 
   {    
       ui.sphereSpeed(1);
+        set.colorButton1(1);
+        set.colorButton2(1);
+        set.colorButton3(1);
   }

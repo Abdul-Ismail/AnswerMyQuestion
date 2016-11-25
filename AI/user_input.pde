@@ -1,5 +1,4 @@
 class user_input {
-
   int insertedWordCounter = 0; //keeps track of element user is inputing
   char firstLetter = ' ';
   String questionString = "Jarvis please answer\n the following question\n ";   
@@ -27,7 +26,7 @@ class user_input {
   int cardPicked;
 
   user_input()
-  {
+  { 
 
     for ( int i = 0; i< 52; i++ )
     {
@@ -199,7 +198,7 @@ class user_input {
 
     void printText() {
       fill(28, 236, 76);
-      textSize(10);
+      textSize(15);
       if (print ==1)
       {
         text(displayHidden, 75, 220);
@@ -217,7 +216,7 @@ class user_input {
           stringCounter += 1;
           key = ']';
         }
-        if (stringCounter >25 )
+        if (stringCounter >15 )
         {
           realUserInput+= "\n";
           stringCounter = 0;
