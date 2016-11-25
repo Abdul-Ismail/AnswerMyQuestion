@@ -9,6 +9,9 @@ class animation {
   int loadingScreenSpeech = 0;
   PShape screen;
   int rectY = 0;
+  float speedButtonX = 50;
+  float sphereAngle;
+  float sphereSpeed;
 
 
   animation() {
@@ -41,8 +44,9 @@ class animation {
 
     pushMatrix();
     translate(width/2, height/2);
-    rotateX(radians(frameCount*3));
-    rotateY(radians(frameCount*3));
+    rotateX(radians(sphereAngle));
+    rotateY(radians(sphereAngle));
+    sphereAngle +=sphereSpeed;
     if (hover != true){ //if mouse is not over sphere display this color   
          button.setFill(color(255, 0, 0));
     }
@@ -52,6 +56,21 @@ class animation {
     popMatrix();
    
     return angle;
+  }
+  
+  void sphereSpeed(int i){
+    ellipse(speedButtonX,50,10,10);
+    if (overCircle(speedButtonX, 50,mouseX, mouseY,10)){
+      
+      
+      if (i ==1){
+        if (speedButtonX >= 50 && speedButtonX <= 100)
+        {
+        speedButtonX = mouseX;
+        sphereSpeed = speedButtonX /10;
+        }
+      }
+    }
   }
 
   int loadingScreen() {

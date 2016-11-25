@@ -4,9 +4,6 @@ timeUI time;
 design designUI;
 int value = 0;
 float[] angle = new float[2]; //used to store angle 
-float timeDistance;
-float timeX= 100;
-float timeY= 120;
 PImage bg;
 float timeCounter;
 float currentTime;
@@ -26,6 +23,7 @@ void setup() {
 void draw() {
   background(bg);
   timeCounter = millis() - currentTime;
+  ui.sphereSpeed(0);
 
   if (value !=10){
     angle = ui.circleSpin();
@@ -92,10 +90,6 @@ void mousePressed() {
 }
 
   void mouseDragged() 
-  {
-    if (timeDistance > 70 && timeDistance < 90) {
-
-      timeX = mouseX;
-      timeY = mouseY;
-    }
+  {    
+      ui.sphereSpeed(1);
   }

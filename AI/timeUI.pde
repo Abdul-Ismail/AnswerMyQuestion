@@ -37,4 +37,15 @@ class timeUI{
   text(s, mainX+35, mainY);
   return d;
 }
+
+/*
+
+  void mouseDragged() 
+  {
+    if (timeDistance > 70 && timeDistance < 90) {
+
+      timeX = mouseX;
+      timeY = mouseY;
+    }
+    */
 }
