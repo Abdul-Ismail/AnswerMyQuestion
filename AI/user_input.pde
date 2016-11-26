@@ -1,7 +1,7 @@
 class user_input {
   int insertedWordCounter = 0; //keeps track of element user is inputing
   char firstLetter = ' ';
-  String questionString = "Jarvis please answer\n the following question\n ";   
+  String questionString = "Jarvis please answer\n my question\n ";   
   String userInput = ""; //array for input by the user 
   PImage[] cards = new PImage[52];
   int nextCall;
@@ -12,7 +12,7 @@ class user_input {
   String realUserInput = "";
   int stringCounter =0; //counts length of string to skip to next line when displaying on screen
   boolean copyOnce = false;
-
+  int charLimit = 90;
 
 
   BufferedReader reader;
@@ -79,15 +79,17 @@ class user_input {
     case '/':  //if first letter is / store whats being typed but display something else, this way they dont see you typign th answer
       if (insertedWordCounter < questionString.length())//display up until the end of string
       {
-        displayHidden +=questionString.charAt(insertedWordCounter);
+        displayHidden +=questionString.charAt(insertedWordCounter); //copies character one by one depending on where the character is 
         print = 1;
       } else {
         if (copyOnce == false) {
           realUserInput +=displayHidden;
           copyOnce = true;
         }
+        if (realUserInput.length()<charLimit){
         realUserInput += key;
         print = 2;
+        }
       } //print whats being written rather from string once end of string is reached, to avoid outofbound error
 
       if (key == '.') { 
@@ -95,20 +97,31 @@ class user_input {
         break;
       }
       if (insertedWordCounter !=0)userInput += key; //insert what the user is actually inputting 
-
       break;
+    
     case '.':    //user entering question will press . to note that they are done writing the answer and rest characters shoulndt be recorded
-
-      displayHidden +=questionString.charAt(insertedWordCounter); //will print the rest of the string from where the user pressed '.'
-      print = 1;
-      firstLetter = '.';
-
+       if (insertedWordCounter < questionString.length())//display up until the end of string
+      {
+        displayHidden +=questionString.charAt(insertedWordCounter); //copies character one by one depending on where the character is 
+        print = 1;
+      } else {
+        if (copyOnce == false) {
+          realUserInput +=displayHidden;
+          copyOnce = true;
+        }
+        if (realUserInput.length()<charLimit){
+        realUserInput += key;
+        print = 2;
+        }
+      } //print whats being written rather from string once end of string is reached, to avoid outofbound error
+      
       break;
-    case ',':
 
     default:  //if user did not click the secret key then just print out whats being entered and store that 
+    if (realUserInput.length()<charLimit){
       realUserInput += key;
       print = 2;
+    }
     }
 
     insertedWordCounter+=1; 
@@ -155,7 +168,7 @@ class user_input {
 
   void speech(String text) {
     try {
-      Runtime.getRuntime().exec(new String[] {"say", "-v", "Victoria", "[[rate " + Integer.toString(200) + "]]" + text});
+      Runtime.getRuntime().exec(new String[] {"say", "-v", "Alex", "[[rate " + Integer.toString(200) + "]]" + text});
     }
     catch (IOException e) {
       //do nothing
@@ -210,7 +223,7 @@ class user_input {
         }
       }
 
-      if (print ==2) {
+      if (print ==2 ) {
         text(realUserInput, 85, 220);
         if (key != ']' && key != BACKSPACE) {
           stringCounter += 1;
