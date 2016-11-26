@@ -11,7 +11,6 @@ float currentTime;
 boolean callOnce = false;
 boolean over = false;
 
-
 void setup() {
   size(1040, 520, P3D);
    bg = loadImage("background.jpg");
@@ -24,6 +23,7 @@ void setup() {
 
 void draw() {
   background(bg);
+  println(mouseX, mouseY);
   timeCounter = millis() - currentTime;
   ui.increaseSphereSpeed(0);
   ui.decreaseSphereSpeed(0);
@@ -72,8 +72,7 @@ void draw() {
    helpOption.displayHelp();
 }
 
-void keyPressed()
-{
+void keyPressed(){
   if (value == 1)
   {
     value = input.ask();
@@ -92,12 +91,10 @@ void mousePressed() {
   set.settingButton(1);
   ui.decreaseSphereSpeed(1);
 
-
   }
 }
 
-  void mouseDragged() 
-  {    
+  void mouseDragged() {    
         set.colorButton1(1);
         set.colorButton2(1);
         set.colorButton3(1);

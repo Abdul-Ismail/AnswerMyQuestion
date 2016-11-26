@@ -134,7 +134,7 @@ class design {
 
 
 
-    rect(rectStart, 295, rectWidth, rectY);
+    rect(rectStart, 295, rectWidth, rectY, 20);
   }
 
   void removeCardScreen() {
@@ -169,7 +169,7 @@ class design {
     line(685, 260, line1X, 260);
     line(870, 260, 870, line2Y);
 
-    rect(rectStart, 295, rectWidth, rectY);
+    rect(rectStart, 295, rectWidth, rectY, 20);
   }
 
   boolean overButton(float circleCenterX, float circleCenterY, float x, float y, float diameter) {

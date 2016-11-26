@@ -16,7 +16,7 @@ class setting{
     text("settings", 40, 40);
     noFill();
     rect(40, 20, 100, 30,10);
-    println(value);
+   
     //checks if its hovering over given area
       //this will display the following when hovering over or clicked
      if (mouseX >= 40 && mouseX <= 40+100 && 
