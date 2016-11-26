@@ -28,7 +28,7 @@ class animation {
     int radius =50;
     float speed = 2;
     noFill();
-    stroke(69, 298, 208);
+    //stroke(69, 298, 208);
 
    /* for (int i = 0; i<2; i++)
     {

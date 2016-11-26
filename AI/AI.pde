@@ -26,12 +26,13 @@ void draw() {
   background(bg);
   timeCounter = millis() - currentTime;
   ui.sphereSpeed(0);
-  set.settingButton(0);
 
   if (value !=10){
+     
     angle = ui.circleSpin();
     designUI.circleDesign();
     ui.hoverCircle(mouseX, mouseY, width/2, height/2, 200);
+    set.settingButton(0);
   }else    value = ui.loadingScreen();
   
   if (value == 5)
@@ -68,7 +69,6 @@ void draw() {
          input.printText();
   }
   
-
 }
 
 void keyPressed()
