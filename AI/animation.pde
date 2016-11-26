@@ -191,23 +191,25 @@ class animation {
   }
   
   //increase the speed of the sphere when button is clicked
-     void increaseSphereSpeed(int i){
+
+  
+       void decreaseSphereSpeed(int i){
         float d = dist(600, 180,mouseX, mouseY);
         if (d < 17.5){
       
-          if (i ==1 && sphereSpeed < 100){
-            sphereSpeed +=0.5;
+          if (i ==1 && sphereSpeed > 0){
+            sphereSpeed -=0.5;
 
           }
         }  
   }
   
-       void decreaseSphereSpeed(int i){
+    void increaseSphereSpeed(int i){
         float d = dist(560, 155,mouseX, mouseY);
         if (d < 17.5){
       
-          if (i ==1 && sphereSpeed > 0){
-            sphereSpeed -=0.5;
+          if (i ==1 && sphereSpeed < 100){
+            sphereSpeed +=0.5;
 
           }
         }  

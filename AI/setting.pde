@@ -12,10 +12,12 @@ class setting{
     
     stroke(colorButtonX1*2-removeX, colorButtonX2*2-removeX ,colorButtonX3*2-removeX);
     strokeWeight(2);
-    fill(255);
-    text("settings", 40, 40);
-    noFill();
+    if (inRange == true)    fill(121, 120, 120); //changes color of button when hovering over
     rect(40, 20, 100, 30,10);
+    noFill();
+     fill(255);
+     text("settings", 50, 40);
+     noFill();
    
     //checks if its hovering over given area
       //this will display the following when hovering over or clicked
@@ -47,6 +49,7 @@ class setting{
     }else inRange = false;
   }
   
+  //3 buttons for eacg RGB value which will change the theme color
         void colorButton1(int i){
       if (inRange == true || value == true){
         ellipse(colorButtonX1,135,10,10);

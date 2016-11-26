@@ -104,7 +104,7 @@ class design {
 
   void cardScreen() {
     
-    stroke(69, 298, 208);
+    //stroke(69, 298, 208);
     strokeWeight(5);
     //slows down the moving arvs around center
     if (speed1 > 0) {
@@ -135,6 +135,7 @@ class design {
 
 
     rect(rectStart, 295, rectWidth, rectY, 20);
+    println(rectWidth);
   }
 
   void removeCardScreen() {

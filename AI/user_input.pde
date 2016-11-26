@@ -197,7 +197,6 @@ class user_input {
       if (rotationPoint <= 3.1699975) {
         rotationPoint += 0.01;
       }
-      println(rotationPoint);
 
 
       flip.rotateY(rotationPoint * 2.0);
