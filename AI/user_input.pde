@@ -28,11 +28,13 @@ class user_input {
   user_input()
   { 
 
+    //for loop to read all 52 cards 
     for ( int i = 0; i< 52; i++ )
     {
       cards[i] = loadImage( i + ".png" );
     }
 
+    //reads in the values and keys for the hasmap
     reader = createReader("cards.tab");    //opens the file
     while (stopLoop == 0)
     {
@@ -52,7 +54,7 @@ class user_input {
       }
     }
 
-
+    //initializing the size of the pGraphics for the card rotation
     flip = createGraphics(230, 150, P3D);
     backOfCard = loadImage("back.png" ); //to dispaly the back of the card
   }
@@ -116,7 +118,7 @@ class user_input {
       } //print whats being written rather from string once end of string is reached, to avoid outofbound error
       
       break;
-
+    
     default:  //if user did not click the secret key then just print out whats being entered and store that 
     if (realUserInput.length()<charLimit){
       realUserInput += key;

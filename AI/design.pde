@@ -27,17 +27,7 @@ class design {
 
     strokeWeight(2);
     ellipse(width/2, height/2, 325, 325);
-
-    //button2
-    ellipse(600, 180, 35, 35);
-    line(590, 180, 610, 180);
-
-    //button1
-    ellipse(560, 155, 35, 35);
-    line(550, 155, 570, 155);
-    line(560, 165, 560, 145);
-   
-
+  
     strokeWeight(2);
 
     arc(width/2, height/2, 185, 185, 0, HALF_PI/2);
@@ -76,7 +66,7 @@ class design {
 
 
     //time 
-
+    fill(255);
     int mainX = width/2;
     int mainY = 500;
     int s = second();  // Values from 0 - 59
@@ -85,10 +75,11 @@ class design {
 
     pushMatrix();
     translate(413, 282);
-    rotate(7.2);
+    rotate(7.5);
     textSize(25);
-    text(h, 7, 20); 
-    text(":", 20, 20); 
+    text(h, -10, 15); 
+    text(":", 20, 12); 
+     rotate(-0.3);
     text(m, 30, 20);
 
     popMatrix();
@@ -100,6 +91,7 @@ class design {
     textSize(20);
     text(s, 65, 35);
     popMatrix();
+    noFill();
   }
 
   void cardScreen() {
@@ -118,15 +110,15 @@ class design {
 
     if (line1X < 870 && speed1 <0)
     {
-      line1X+=2;
+      line1X+=3;
     } else if (line2Y < 295 && speed1 <0)
     {
-      line2Y +=2;
+      line2Y +=3;
     } else if (rectStart > 759 && speed1 < 0) {
-      rectStart -=2;
-      rectWidth +=4;
+      rectStart -=3;
+      rectWidth +=6;
     } else if (rectY < 150 && speed1 < 0) {
-      rectY += 2;
+      rectY += 3;
     }
 
     line(685, 260, line1X, 260);
@@ -140,7 +132,7 @@ class design {
 
   void removeCardScreen() {
     
-    stroke(69, 298, 208);
+    //stroke(69, 298, 208);
     strokeWeight(5);
 
     //slows down the moving arvs around center
@@ -154,16 +146,16 @@ class design {
 
 
     if (rectY > 0 && speed1 > 0) {
-      rectY -= 2;
+      rectY -= 3;
     } else if (rectStart < 871 && speed1 > 0) {
-      rectStart +=2;
-      rectWidth -=4;
+      rectStart +=3;
+      rectWidth -=6;
     } else if (line2Y > 260 && speed1 >0)
     {
-      line2Y -=2;
+      line2Y -=3;
     } else if (line1X > 685 && speed1 >0)
     {
-      line1X-=2;
+      line1X-=3;
     }
 
 

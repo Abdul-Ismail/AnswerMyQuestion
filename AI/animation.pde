@@ -127,8 +127,8 @@ class animation {
     load.fill(255, 0, 0);
     load.strokeWeight(10);
 
-    newx = x + cos(radians(loadingAngle))*80;
-    newy = y +sin(radians(loadingAngle))*80;
+    newx = x + cos(radians(loadingAngle))*90;
+    newy = y +sin(radians(loadingAngle))*90;
     if (loadingAngle < 30 || loadingAngle > 260)
     {
       load.stroke(242, 13, 59);
@@ -191,12 +191,19 @@ class animation {
   }
   
   //increase the speed of the sphere when button is clicked
+      //button2
+
 
   
        void decreaseSphereSpeed(int i){
+         fill(131, 130, 130);
+          ellipse(600, 180, 35, 35);
+          noFill();
+          line(590, 180, 610, 180);
         float d = dist(600, 180,mouseX, mouseY);
         if (d < 17.5){
-      
+           fill(100, 97, 97);
+           ellipse(600, 180, 35, 35);
           if (i ==1 && sphereSpeed > 0){
             sphereSpeed -=0.5;
 
@@ -205,9 +212,15 @@ class animation {
   }
   
     void increaseSphereSpeed(int i){
+      fill(121, 120, 120);
+    ellipse(560, 155, 35, 35);
+    noFill();
+    line(550, 155, 570, 155);
+    line(560, 165, 560, 145);
         float d = dist(560, 155,mouseX, mouseY);
         if (d < 17.5){
-      
+           fill(100, 97, 97);
+            ellipse(560, 155, 35, 35);
           if (i ==1 && sphereSpeed < 100){
             sphereSpeed +=0.5;
 

@@ -6,7 +6,7 @@ help helpOption;
 int value = 0;
 float[] angle = new float[2]; //used to store angle 
 PImage bg;
-float timeCounter;
+float timeCounter; //reset to zero when timer is need as millis stores how long the program has been going for
 float currentTime;
 boolean callOnce = false;
 boolean over = false;
@@ -40,9 +40,9 @@ void draw() {
           if( over == false && callOnce == true){       
             designUI.cardScreen();
           }
-        if( timeCounter > 6000 && timeCounter < 15000 && callOnce == true){
+        if( timeCounter > 5000 && timeCounter < 12000 && callOnce == true){
                  input.rotateCard();
-          }else if (timeCounter > 15000 && callOnce == true){
+          }else if (timeCounter > 12000 && callOnce == true){
             designUI.removeCardScreen();
             over = true; //stops calling cardscreen once this needs to be called
           }
