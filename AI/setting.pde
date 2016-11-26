@@ -8,26 +8,27 @@ class setting{
   boolean inRange = false;
   
   void settingButton(int i){
-    float d = dist(40, 40, mouseX, mouseY);
+ 
     
     stroke(colorButtonX1*2-removeX, colorButtonX2*2-removeX ,colorButtonX3*2-removeX);
     strokeWeight(2);
     fill(255);
     text("settings", 40, 40);
     noFill();
-    ellipse(40, 40, 50, 50);
-    
+    rect(40, 20, 100, 30,10);
+    println(value);
     //checks if its hovering over given area
-    if (d < 50){
+      //this will display the following when hovering over or clicked
+     if (mouseX >= 40 && mouseX <= 40+100 && 
+      mouseY >= 20 && mouseY <= 20+30 || value == true) {
       inRange = true;
-    }else inRange = false;
-    //boolean value changed if the area is click
-    if (i == 1 && d < 50){
-      value = !value; //changes evertime you click within the button
       
+    //boolean value changed if the area is click
+    if (mouseX >= 40 && mouseX <= 40+100 && 
+      mouseY >= 20 && mouseY <= 20+30 && i == 1){
+      value = !value; //changes evertime you click within the button
     }
-        //this will display the following when hovering over or clicked
-    if (value == true || d < 50){
+
       strokeWeight(2);
       fill(0);
       rect( 80, 110, 200, 300);
@@ -42,8 +43,8 @@ class setting{
       colorButton2(0);
       colorButton3(0);
 
-    }
-
+      
+    }else inRange = false;
   }
   
         void colorButton1(int i){
@@ -92,7 +93,7 @@ class setting{
         removeX = 100;
     }
         float d = dist(colorButtonX3, 175,mouseX, mouseY);
-        println(d);
+
         if (d < 10){
       
           if (i ==1 && d < 10){

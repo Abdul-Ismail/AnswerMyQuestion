@@ -69,7 +69,7 @@ void draw() {
         ui.textScreen();
          input.printText();
   }
-   //helpOption.displayHelp();
+   helpOption.displayHelp();
 }
 
 void keyPressed()
