@@ -23,7 +23,6 @@ void setup() {
 
 void draw() {
   background(bg);
-  println(mouseX, mouseY);
   timeCounter = millis() - currentTime;
   ui.increaseSphereSpeed(0);
   ui.decreaseSphereSpeed(0);
@@ -41,7 +40,7 @@ void draw() {
           if( over == false && callOnce == true){       
             designUI.cardScreen();
           }
-        if( timeCounter > 7000 && timeCounter < 15000 && callOnce == true){
+        if( timeCounter > 6000 && timeCounter < 15000 && callOnce == true){
                  input.rotateCard();
           }else if (timeCounter > 15000 && callOnce == true){
             designUI.removeCardScreen();
@@ -63,6 +62,8 @@ void draw() {
   if (value == 3)
   {
     value = input.answer();
+    callOnce = false;
+    over = false;
   }
   
   if (value == 1 || value ==2){

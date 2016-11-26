@@ -153,6 +153,7 @@ class user_input {
       insertedWordCounter = 0;
       userInput = "";
       flipCardSpeech = true;
+      rotationPoint = 0;
       return nextCall = 5;
     } else if (userInput != "") { 
       speech(userInput); //if userinput is not null then it will text to speech the answer
@@ -188,7 +189,7 @@ class user_input {
       flip.translate(150, 15);  
       flip.rotateY(rotationPoint);
 
-      if (rotationPoint < 1.5810179)
+      if (rotationPoint < 1.31999911)
       {
         flip.image(backOfCard, 0, 0, 85, 123.42);
       } else   flip.image(cards[cardPicked], 0, 0, 85, 123.42);
@@ -196,6 +197,7 @@ class user_input {
       if (rotationPoint <= 3.1699975) {
         rotationPoint += 0.01;
       }
+      println(rotationPoint);
 
 
       flip.rotateY(rotationPoint * 2.0);
