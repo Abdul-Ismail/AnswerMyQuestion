@@ -58,22 +58,6 @@ class animation {
     return angle;
   }
   
-  void sphereSpeed(int i){
-    ellipse(speedButtonX,50,10,10);
-    line(40,50, 110, 50);
-        if (overCircle(speedButtonX, 50,mouseX, mouseY,10)){
-         
-      
-          if (i ==1){
-            if (mouseX >= 50 && mouseX <= 100)
-            {
-            speedButtonX = mouseX;
-            sphereSpeed = speedButtonX /10;
-
-            }
-          }
-        }  
-  }
 
   int loadingScreen() {
      if (loadingScreenSpeech ==0 ){
@@ -204,5 +188,28 @@ class animation {
 
     noFill();
     rect(70, 200, 150, rectY,20);
+  }
+  
+  //increase the speed of the sphere when button is clicked
+     void increaseSphereSpeed(int i){
+        float d = dist(600, 180,mouseX, mouseY);
+        if (d < 17.5){
+      
+          if (i ==1 && sphereSpeed < 100){
+            sphereSpeed +=0.5;
+
+          }
+        }  
+  }
+  
+       void decreaseSphereSpeed(int i){
+        float d = dist(560, 155,mouseX, mouseY);
+        if (d < 17.5){
+      
+          if (i ==1 && sphereSpeed > 0){
+            sphereSpeed -=0.5;
+
+          }
+        }  
   }
 }

@@ -1,8 +1,8 @@
 user_input input;
 animation ui;
-timeUI time;
 design designUI;
 setting set;
+help helpOption;
 int value = 0;
 float[] angle = new float[2]; //used to store angle 
 PImage bg;
@@ -17,15 +17,16 @@ void setup() {
    bg = loadImage("background.jpg");
   input = new user_input();
   ui = new animation();
-  time = new timeUI();
   designUI = new design();
   set = new setting();
+  helpOption = new help();
 }
 
 void draw() {
   background(bg);
   timeCounter = millis() - currentTime;
-  ui.sphereSpeed(0);
+  ui.increaseSphereSpeed(0);
+  ui.decreaseSphereSpeed(0);
 
   if (value !=10){
      
@@ -68,7 +69,7 @@ void draw() {
         ui.textScreen();
          input.printText();
   }
-  
+   //helpOption.displayHelp();
 }
 
 void keyPressed()
@@ -87,16 +88,16 @@ void keyPressed()
 void mousePressed() {
   if (value != 10){
   value = ui.circleClicked(mouseX, mouseY, width/2, height/2, 160);
-  designUI.button1Clicked();
-  designUI.button2Clicked();
+  ui.increaseSphereSpeed(1);
   set.settingButton(1);
+  ui.decreaseSphereSpeed(1);
+
 
   }
 }
 
   void mouseDragged() 
   {    
-      ui.sphereSpeed(1);
         set.colorButton1(1);
         set.colorButton2(1);
         set.colorButton3(1);
