@@ -66,6 +66,8 @@ class user_input {
       print = 2;
       realUserInput = "";
       displayHidden ="";
+      insertedWordCounter = 0;
+      
       copyOnce = false;
       println();
       key = ' ';//to remove key from having enter stored
