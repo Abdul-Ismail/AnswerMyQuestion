@@ -25,7 +25,7 @@ class MySocket extends Thread {
             
             received = in.readUTF();
             //println(received);
-            AI.derp = received;
+            //AI.derp = received;
             //DataOutputStream out = new DataOutputStream(server.getOutputStream());
             //out.writeUTF("Thank you for connecting to " + server.getLocalSocketAddress()
             //   + "\nGoodbye!");
